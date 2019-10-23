@@ -1,0 +1,23 @@
+// Example: @include row("fixed", 4);
+@mixin row($type: fixed, $padding-modifier: 1) {
+	@if ($type == "fixed") {
+		max-width: $global-grid-size;
+	}
+
+	@else {
+		max-width: 100%;
+	}
+
+	display: flex;
+	margin: 0 auto;
+	padding: 0 $global-base-unit * $padding-modifier;
+}
+
+@mixin column($count: 1) {
+	width: percentage($count / 12);
+}
+
+@mixin gutter() {
+	padding-left: $global-base-unit;
+	padding-right: $global-base-unit;
+}
