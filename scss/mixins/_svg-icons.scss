@@ -1,9 +1,10 @@
-@include icon-container($width: 60px, $height: 60px) {
+@mixin icon-container($width: 60px, $height: 60px) {
 	position: relative;
 	width: $width;
 	height: $height;
 }
-@include icon($width: 38px) {
+
+@mixin icon($width: 38px) {
 	position: absolute;
 	top: 50%;
 	left: 50%;
