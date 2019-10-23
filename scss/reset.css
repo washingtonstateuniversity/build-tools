@@ -46,6 +46,10 @@ body {
 
 	scroll-behavior: smooth;
 	text-rendering: optimizeSpeed;
+
+	-moz-osx-font-smoothing: antialiased;
+	 -webkit-font-smoothing: antialiased;
+			 font-smoothing: antialiased;
 }
 
 /*---------- Remove list styles on ul, ol elements with a class attribute  ----------*/
