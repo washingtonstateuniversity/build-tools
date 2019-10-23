@@ -1,2 +1,51 @@
-@import "./variables/colors";
-@import "./variables/units";
+/* Colors
+======================= */
+$primary: #A60F2D;
+$primary--light: #CA1237;
+
+$black: #F8F8F8;
+$black--3: #F8F8F8;
+$black--5: #F2F2F2;
+$black--10: #E5E5E5;
+$black--20: #CCCCCC;
+$black--30: #B2B2B2;
+$black--50: #7F7F7F;
+$black--75: #404040;
+$black--80: #333333;
+$black--90: #191919;
+
+/* Color Map for Mixin 
+======================= */
+$colors: (
+	primary: (
+		base:  $primary,
+		light: $primary--light,
+	),
+	black: (
+		base: $black,
+		3:    $black--3,
+		5:    $black--5,
+		10:   $black--10,
+		20:   $black--20,
+		30:   $black--30,
+		50:   $black--50,
+		75:   $black--75,
+		80:   $black--80,
+		90:   $black--90,
+	),
+	white: (
+		base: $white,
+	)
+);
+
+/* Units 
+======================= */
+$wsu-bt-base-unit: 16px;
+$wsu-bt-grid-size: 1440px;
+$wsu-bt-gutter-size: 16px;
+
+/* Breakpoints 
+======================= */
+$wsu-bt-breakpoint--small: 768px;
+$wsu-bt-breakpoint--medium: 1024px;
+$wsu-bt-breakpoint--large: 1440px;
