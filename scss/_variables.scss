@@ -1,6 +1,6 @@
 /* Units 
 ======================= */
-$wsu-bt-base-unit: 16px;
+$wsu-bt-base-unit: 20px;
 $wsu-bt-grid-size: 1440px;
 $wsu-bt-gutter-size: 16px;
 
@@ -39,3 +39,14 @@ $colors: (
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
 $wsu-bt-primary-font-family: 'Montserrat', sans-serif;
+
+/* Sizing Units 
+======================= */
+$unit-2xs: $wsu-bt-base-unit * 0.25; // 5px
+$unit-xs: $wsu-bt-base-unit * 0.5; // 10px
+$unit-s: $wsu-bt-base-unit * 0.75; // 15px
+$unit: $wsu-bt-base-unit * 1; // Baseline Unit
+$unit-l: $wsu-bt-base-unit * 1.25; // 25px
+$unit-xl: $wsu-bt-base-unit * 1.5; // 30px
+$unit-2xl: $wsu-bt-base-unit * 1.75; // 35px
+$unit-3xl: $wsu-bt-base-unit * 2; // 40px
