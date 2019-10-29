@@ -96,6 +96,5 @@ select {
 
 *:focus {
 	outline: none;
-	border-top: 2px solid #CA1237;
-	border-bottom: 2px solid #CA1237;
+	box-shadow: inset 0 -4px 0 #CA1237, inset 0 4px 0 #CA1237;
 }
