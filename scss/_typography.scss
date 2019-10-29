@@ -1,0 +1,24 @@
+/* Document Styles 
+======================= */
+html {
+	line-height: 1.5;
+	font-family: $wsu-bt-primary-font-family;
+}
+
+/* Link Styles 
+======================= */
+a {
+	color: $wsu-bt-link-color--base;
+
+	&:active {
+		color: $wsu-bt-link-color--active;
+	}
+
+	&:hover {
+		color: $wsu-bt-link-color--hover;
+	}
+
+	&:visited {
+		color: $wsu-bt-link-color--visited;
+	}
+}
