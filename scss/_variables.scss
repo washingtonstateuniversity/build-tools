@@ -39,31 +39,10 @@ $colors: (
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
 $wsu-bt-primary-font-family: 'Montserrat', sans-serif;
-$wsu-bt-link-color--base: color(primary, base);
-$wsu-bt-link-color--active: color(primary, base);
-$wsu-bt-link-color--hover: color(primary, base);
-$wsu-bt-link-color--visited: color(primary, base);
-
-html {
-	line-height: 1.5;
-	font-family: $wsu-bt-primary-font-family;
-}
-
-a {
-	color: $wsu-bt-link-color--base;
-
-	&:active {
-		color: $wsu-bt-link-color--active;
-	}
-
-	&:hover {
-		color: $wsu-bt-link-color--hover;
-	}
-
-	&:visited {
-		color: $wsu-bt-link-color--visited;
-	}
-}
+$wsu-bt-link-color--base: #A60F2D;
+$wsu-bt-link-color--active: #CA1237;
+$wsu-bt-link-color--hover: #CA1237;
+$wsu-bt-link-color--visited: #A60F2D;
 
 /* Sizing Units 
 ======================= */
