@@ -1,7 +1,0 @@
-/* Add required psuedo element properties
-======================= */
-@mixin make-psuedo-element($position: relative) {
-	content: "";
-	position: $position;
-	display: block;
-}
