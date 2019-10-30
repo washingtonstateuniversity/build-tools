@@ -31,18 +31,14 @@
 	}
 }
 
-/* Show Element on Hover 
+/* Show Adjacent Sibling on Hover
 ======================= */
-@mixin show-element-on-hover($element) {
-	@if $element {
-		@error 'Element #{$element} is not set';
-	} else {
-		@error 'els';
+@mixin show-adjacent-sibling-class-on-hover($class-name) {
+	& + #{$class-name} {
+		opacity: 0;
 	}
 
-	opacity: 0;
-
-	&:hover {
+	&:hover + #{$class-name} {
 		opacity: 1;
 	}
 }

@@ -28,4 +28,4 @@ Sets the baseline font, color, and sizing values for typography.
 Sets all the variables for the build tool including: unit sizes, breakpoints, colors, typography, and link color.
 
 ## Reset
-The reset provides an optional item that can be imported into a project if needed. The reset **is not** included in *all-the-things*. 
+The reset provides a baseline for all projects to be based off of. 
