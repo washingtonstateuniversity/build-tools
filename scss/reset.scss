@@ -13,9 +13,9 @@
 }
 
 
-/*----------  Remove default padding  ----------*/
-ul[class],
-ol[class] {
+/*----------  Remove default padding if no class is set  ----------*/
+ul:not([class]),
+ol:not([class]) {
 	padding: 0;
 }
 
