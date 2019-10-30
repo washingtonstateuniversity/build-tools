@@ -1,6 +1,6 @@
 /* Border Bottom Hover 
 ======================= */
-@mixin border-bottom-hover($top-percentage: 100%, $height: 5px) {
+@mixin border-bottom-hover($top-percentage: 100%, $height: 5px, $width: 100%) {
 	position: relative;
 
 	&::after {
@@ -9,7 +9,7 @@
 		top: calc(#{$top-percentage} - #{$height});
 		left: 50%;
 	
-		width: 90%;
+		width: $width;
 		height: $height;
 	
 		content: " ";
