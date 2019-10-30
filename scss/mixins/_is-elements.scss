@@ -1,13 +1,13 @@
 /* Is Icon 
 ======================= */
-@mixin is-icon() {
-	width: $unit;
-	height: $unit;
+@mixin is-icon($icon-size: $unit) {
+	width: $icon-size;
+	height: $icon-size;
 }
 
 /* Is Icon Centered in Container
 ======================= */
-@mixin is-icon-centered-in-container($container-width: 60px, $container-height: 60px, $icon-size: 20px) {
+@mixin is-icon-centered-in-container($container-width: 60px, $container-height: 60px, $icon-size: $unit) {
 	position: relative;
 	width: $container-width;
 	height: $container-height;
