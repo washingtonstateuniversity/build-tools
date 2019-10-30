@@ -1,8 +1,7 @@
-@import "./mixins/color";
-@import "./mixins/grid";
-@import "./mixins/media-queries";
-@import "./mixins/psuedo";
-@import "./mixins/z-index";
-@import "./mixins/svg-icons";
 @import "./mixins/animations";
+@import "./mixins/color";
 @import "./mixins/font-size";
+@import "./mixins/grid";
+@import "./mixins/is-elements";
+@import "./mixins/media-queries";
+@import "./mixins/z-index";
