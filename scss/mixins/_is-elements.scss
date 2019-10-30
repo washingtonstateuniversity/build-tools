@@ -9,8 +9,8 @@
 ======================= */
 @mixin is-icon-centered-in-container($container-width: 60px, $container-height: 60px, $icon-size: 20px) {
 	position: relative;
-	width: $width;
-	height: $height;
+	width: $container-width;
+	height: $container-height;
 	display: block;
 
 	svg {

@@ -16,8 +16,8 @@
 
 ### Is Elements
 Is elements are design to provide commonly reoccursing css properties and values. Is elements currently supports:
-- is-icon-container
-- is-icon
+- is-icon-container `@include is-icon-container();`
+- is-icon `@include is-icon($unit-xl);`
 - is-psuedo-element
 - TODO: Create is-icon-container-item and move current is-icon to it and replace with more vanilla use-case of just displaying an svg inline next to its elements
 
