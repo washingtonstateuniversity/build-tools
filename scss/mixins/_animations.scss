@@ -30,3 +30,19 @@
 		}
 	}
 }
+
+/* Show Element on Hover 
+======================= */
+@mixin show-element-on-hover($element) {
+	@if $element {
+		@error 'Element #{$element} is not set';
+	} else {
+		@error 'els';
+	}
+
+	opacity: 0;
+
+	&:hover {
+		opacity: 1;
+	}
+}
