@@ -1,24 +1,30 @@
-/* Is Icon Container
+/* Is Icon 
 ======================= */
-@mixin is-icon-container($width: 60px, $height: 60px) {
+@mixin is-icon() {
+	width: $unit;
+	height: $unit;
+}
+
+/* Is Icon Centered in Container
+======================= */
+@mixin is-icon-centered-in-container($container-width: 60px, $container-height: 60px, $icon-size: 20px) {
 	position: relative;
 	width: $width;
 	height: $height;
 	display: block;
-}
 
-/* Is Icon 
-======================= */
-@mixin is-icon($width: 38px) {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-
-	width: $width;
-	display: block;
-
-	transition: 500ms ease width;
-	transform: translate(-50%, -50%);
+	svg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	
+		width: $icon-size;
+		height: $icon-size;
+		display: block;
+	
+		transition: 500ms ease width;
+		transform: translate(-50%, -50%);
+	}
 }
 
 /* Is a psuedo element
