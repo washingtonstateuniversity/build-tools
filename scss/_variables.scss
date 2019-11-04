@@ -54,3 +54,15 @@ $unit-l: $wsu-bt-base-unit * 1.25; // 25px
 $unit-xl: $wsu-bt-base-unit * 1.5; // 30px
 $unit-2xl: $wsu-bt-base-unit * 1.75; // 35px
 $unit-3xl: $wsu-bt-base-unit * 2; // 40px
+
+/* Transition Variables
+======================= */
+$transition-timings: (
+	standard: cubic-bezier(0, 0, 0.03, 1)
+);
+
+$transition-durations: (
+	husky: 500ms,
+	cougar: 300ms,
+	eagle: 100ms,
+);

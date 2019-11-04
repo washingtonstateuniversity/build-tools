@@ -1,0 +1,12 @@
+/**
+* function for setting transition-duration and transition-timing-function
+*
+* Example:
+* transition: background-color timing(cougar, standard);
+*/
+@function timing($duration: 'cougar', $timing-function: 'standard') {
+	$transition-duration: map-get($transition-durations, $duration);
+	$transition-timing-function: map-get($transition-timings, $timing-function);
+
+	@return $transition-duration $transition-timing-function;
+}
