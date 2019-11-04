@@ -1,0 +1,14 @@
+/**
+* Function for setting the vertical position of an element on the document. Accepts values 0 - 6.
+*
+* Example:
+* @include elevate(3);
+*/
+
+@mixin elevate($elevation) {
+  transition: box-shadow timing(cougar, standard);
+
+  box-shadow: map-get($key-shadow-umbra-map, $elevation),
+  map-get($key-shadow-penumbra-map, $elevation),
+  map-get($ambient-shadow-map, $elevation);
+}

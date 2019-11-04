@@ -66,3 +66,36 @@ $transition-durations: (
 	cougar: 300ms,
 	eagle: 100ms,
 );
+
+/* Elevation Variables 
+======================= */
+$key-shadow-umbra-colour: rgba(black, 0.09);
+$key-shadow-penumbra-colour: rgba(black, 0.07);
+$ambient-shadow-colour: rgba(black, 0.15);
+$key-shadow-umbra-map: (
+  0: 0 0 0 0 $key-shadow-umbra-colour,
+  1: 0 2px 4px 0 $key-shadow-umbra-colour,
+  2: 0 8px 10px 1px $key-shadow-umbra-colour,
+  3: 0 12px 16px 2px $key-shadow-umbra-colour,
+  4: 0 16px 23px 2px $key-shadow-umbra-colour,
+  5: 0 20px 28px 3px $key-shadow-umbra-colour,
+  6: 0 24px 38px 3px $key-shadow-umbra-colour
+);
+$key-shadow-penumbra-map: (
+  0: 0 0 0 0 $key-shadow-penumbra-colour,
+  1: 0 4px 5px 0 $key-shadow-penumbra-colour,
+  2: 0 3px 14px 2px $key-shadow-penumbra-colour,
+  3: 0 5px 22px 4px $key-shadow-penumbra-colour,
+  4: 0 6px 30px 5px $key-shadow-penumbra-colour,
+  5: 0 8px 34px 6px $key-shadow-penumbra-colour,
+  6: 0 9px 46px 8px $key-shadow-penumbra-colour
+);
+$ambient-shadow-map: (
+  0: 0 0 0 0 $ambient-shadow-colour,
+  1: 0 1px 8px 0 $ambient-shadow-colour,
+  2: 0 4px 15px 0 $ambient-shadow-colour,
+  3: 0 6px 13px 0 $ambient-shadow-colour,
+  4: 0 8px 13px 0 $ambient-shadow-colour,
+  5: 0 9px 15px 0 $ambient-shadow-colour,
+  6: 0 11px 15px 0 $ambient-shadow-colour
+);
