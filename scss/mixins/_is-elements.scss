@@ -1,4 +1,4 @@
-/* Is Icon 
+/* Is Icon
 ======================= */
 @mixin is-icon($icon-size: $unit) {
 	width: $icon-size;
@@ -7,21 +7,24 @@
 
 /* Is Icon Centered in Container
 ======================= */
-@mixin is-icon-centered-in-container($container-width: 60px, $container-height: 60px, $icon-size: $unit) {
+@mixin is-icon--boxed($container-width: 60px, $container-height: 60px, $icon-size: $unit, $icon-x-offset: 0px, $icon-y-offset: 0px) {
 	position: relative;
+
+	display: block;
+
 	width: $container-width;
 	height: $container-height;
-	display: block;
 
 	svg {
 		position: absolute;
-		top: 50%;
-		left: 50%;
-	
+		top: calc(50% + #{$icon-y-offset});
+		left: calc(50% + #{$icon-x-offset});
+
+		display: block;
+
 		width: $icon-size;
 		height: $icon-size;
-		display: block;
-	
+
 		transition: 500ms ease width;
 		transform: translate(-50%, -50%);
 	}
@@ -30,7 +33,9 @@
 /* Is a psuedo element
 ======================= */
 @mixin is-psuedo-element($position: relative) {
-	content: "";
 	position: $position;
+
 	display: block;
+
+	content: "";
 }
