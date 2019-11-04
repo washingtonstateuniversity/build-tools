@@ -42,3 +42,15 @@
 		opacity: 1;
 	}
 }
+
+/* Show Adjacent Sibling on Hover
+======================= */
+@mixin show-adjacent-class-on-hover($class-name) {
+	& ~ #{$class-name} {
+		opacity: 0;
+	}
+
+	&:hover ~ #{$class-name} {
+		opacity: 1;
+	}
+}
