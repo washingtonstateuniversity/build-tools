@@ -1,7 +1,12 @@
+// TODO: this file assumes that there is no other styles being set with these same values.
+//       This may cause issues. Need to figure out a way to package one with baseline styles
+//       and one with all styles being passed through each component class name. 
+
 /* Document Styles 
 ======================= */
-body {
+html {
 	font-family: $wsu-bt-primary-font-family;
+	font-size: $wsu-bt-base-unit;
 }
 
 /* Link Styles 
@@ -20,4 +25,15 @@ a {
 	&:visited {
 		color: $wsu-bt-link-color--visited;
 	}
+}
+
+/* Heading Styles 
+======================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    transition: font-size timing(cougar, standard);
 }

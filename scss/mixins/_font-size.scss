@@ -1,4 +1,12 @@
-@mixin font-size($font-size: 16px, $font-weight: 400) {
-	font-size: $font-size;
-	font-weight: $font-weight;
+/* Font size 
+ * Example usage: @include font-size(ms(6), 700, 1.8);
+ * @params $size, $font-weight, $line-height
+======================= */
+@mixin font-size($size: ms(1), $font-weight: 400, $line-height: 1.5) {
+    @if is-pixel-value($size) {
+        font-size: $size; // Display pixel value for older browsers
+    }
+    font-size:  get-font-size($size);
+    font-weight: $font-weight;
+    line-height: $line-height;
 }

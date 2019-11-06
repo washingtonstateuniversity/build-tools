@@ -1,0 +1,28 @@
+/* Is pixel value check 
+======================= */
+@function is-pixel-value($value) {
+    @return index('px', unit($value)) !=null;
+}
+
+/* Is rem value check 
+======================= */
+@function is-rem-value($value) {
+    @return index('rem', unit($value)) !=null;
+}
+
+/* Get font size of value 
+======================= */
+@function get-font-size($value) {
+    @if is-pixel-value($value) {
+        $remsize: $value / $wsu-bt-base-unit;
+        @return #{$remsize}rem;
+    }
+
+    @else if is-rem-value($value) {
+        @return calc(#{$value} + 1vw);
+    }
+
+    @else {
+        @error "Value #{$value} must be a px, rem, or ms() value.";
+    }
+}

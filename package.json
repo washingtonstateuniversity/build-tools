@@ -15,5 +15,8 @@
     "bugs": {
         "url": "https://github.com/washingtonstateuniversity/wsu-build-tools/issues"
     },
-    "homepage": "https://github.com/washingtonstateuniversity/wsu-build-tools#readme"
+    "homepage": "https://github.com/washingtonstateuniversity/wsu-build-tools#readme",
+    "devDependencies": {
+        "modularscale-sass": "^3.0.10"
+    }
 }
