@@ -14,7 +14,7 @@
 ======================= */
 @function get-font-size($value) {
     @if is-pixel-value($value) {
-        $remsize: $value / $wsu-bt-base-unit;
+        $remsize: $value / $wsu-bt-base-font-size;
         @return #{$remsize}rem;
     }
 
