@@ -15,7 +15,7 @@ toolbar.style.justifyContent = "space-between";
 toolbar.style.alignItems = "center";
 toolbar.style.fontSize = "12px";
 toolbar.style.flexWrap = "wrap";
-toolbar.style.border = "1px solid #f2f2f2";
+toolbar.style.borderBottom = "1px solid #f2f2f2";
 
 // Greeting
 var greetingContainer = document.createElement('div');
