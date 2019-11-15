@@ -51,3 +51,17 @@
 	width: 1px !important;
 	overflow: hidden;
 }
+
+/* Is vertically centered
+======================= */
+@mixin is-vertically-centered {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* Is horizontally centered
+======================= */
+@mixin is-horizontally-centered {
+	left: 50%;
+	transform: translateX(-50%);
+}
