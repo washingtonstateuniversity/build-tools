@@ -40,29 +40,29 @@ breakpointContainer.style.padding = "7px 3vw";
 breakpointContainer.appendChild(breakpointContent);
 
 function updateBreakpointName() {
-    var windowWidth = window.innerWidth;
+	var windowWidth = window.innerWidth;
 
-    if (windowWidth < 767) {
-        breakpointContainer.style.backgroundColor = "#A60F2D";
-        breakpointContainer.removeChild(breakpointContent);
-        breakpointContent = document.createTextNode('Current Breakpoint: Base');
-        breakpointContainer.appendChild(breakpointContent);
-    } else if (windowWidth > 768 && windowWidth < 1023) {
-        breakpointContainer.style.backgroundColor = "#ada400";
-        breakpointContainer.removeChild(breakpointContent);
-        breakpointContent = document.createTextNode('Current Breakpoint: Small');
-        breakpointContainer.appendChild(breakpointContent);
-    } else if (windowWidth > 1024 && windowWidth < 1439) {
-        breakpointContainer.style.backgroundColor = "#f6861f";
-        breakpointContainer.removeChild(breakpointContent);
-        breakpointContent = document.createTextNode('Current Breakpoint: Medium');
-        breakpointContainer.appendChild(breakpointContent);
-    } else if (windowWidth > 1440) {
-        breakpointContainer.style.backgroundColor = "#00a5bd";
-        breakpointContainer.removeChild(breakpointContent);
-        breakpointContent = document.createTextNode('Current Breakpoint: Large');
-        breakpointContainer.appendChild(breakpointContent);
-    }
+	if (windowWidth < 767) {
+		breakpointContainer.style.backgroundColor = "#A60F2D";
+		breakpointContainer.removeChild(breakpointContent);
+		breakpointContent = document.createTextNode('Current Breakpoint: Base');
+		breakpointContainer.appendChild(breakpointContent);
+	} else if (windowWidth > 768 && windowWidth < 1023) {
+		breakpointContainer.style.backgroundColor = "#ada400";
+		breakpointContainer.removeChild(breakpointContent);
+		breakpointContent = document.createTextNode('Current Breakpoint: Small');
+		breakpointContainer.appendChild(breakpointContent);
+	} else if (windowWidth > 1024 && windowWidth < 1439) {
+		breakpointContainer.style.backgroundColor = "#f6861f";
+		breakpointContainer.removeChild(breakpointContent);
+		breakpointContent = document.createTextNode('Current Breakpoint: Medium');
+		breakpointContainer.appendChild(breakpointContent);
+	} else if (windowWidth > 1440) {
+		breakpointContainer.style.backgroundColor = "#00a5bd";
+		breakpointContainer.removeChild(breakpointContent);
+		breakpointContent = document.createTextNode('Current Breakpoint: Large');
+		breakpointContainer.appendChild(breakpointContent);
+	}
 }
 
 updateBreakpointName();
@@ -76,16 +76,16 @@ windowWidthContainer.style.padding = "0 10px";
 windowWidthContainer.appendChild(windowContent);
 
 function displayWindowWidthValue() {
-    windowWidthContainer.removeChild(windowContent);
-    windowWidth = window.innerWidth;
-    windowContent = document.createTextNode('Window Width: ' + windowWidth + 'px');
-    windowWidthContainer.appendChild(windowContent);
+	windowWidthContainer.removeChild(windowContent);
+	windowWidth = window.innerWidth;
+	windowContent = document.createTextNode('Window Width: ' + windowWidth + 'px');
+	windowWidthContainer.appendChild(windowContent);
 }
 
 // Window Resize Events
 window.onresize = function () {
-    displayWindowWidthValue();
-    updateBreakpointName();
+	displayWindowWidthValue();
+	updateBreakpointName();
 };
 
 // Add Elements to Toolbar
