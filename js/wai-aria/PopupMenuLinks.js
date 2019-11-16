@@ -2,6 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
+
+import { MenuItem } from '@wsu/build-tools/js/wai-aria/PopupMenuItemLinks';
+
 var PopupMenu = function (domNode, controllerObj) {
 	var elementChildren,
 		msgPrefix = 'PopupMenu constructor argument domNode ';
@@ -257,3 +260,5 @@ PopupMenu.prototype.close = function (force) {
 		this.controller.setExpanded(false);
 	}
 };
+
+export var PopupMenu;

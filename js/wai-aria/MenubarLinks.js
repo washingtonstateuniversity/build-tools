@@ -3,6 +3,8 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
+import { MenubarItem } from '@wsu/build-tools/js/wai-aria/MenubarItemLinks';
+
 var Menubar = function (domNode) {
 	var elementChildren,
 		msgPrefix = 'Menubar constructor argument menubarNode ';
@@ -18,7 +20,7 @@ var Menubar = function (domNode) {
 	}
 
 	// Check whether menubarNode has A elements
-	e = domNode.firstElementChild;
+	var e = domNode.firstElementChild;
 	while (e) {
 		var menubarItem = e.firstElementChild;
 		if (e && menubarItem && menubarItem.tagName !== 'A') {
@@ -55,7 +57,7 @@ Menubar.prototype.init = function () {
 
 	// Traverse the element children of menubarNode: configure each with
 	// menuitem role behavior and store reference in menuitems array.
-	elem = this.domNode.firstElementChild;
+	var elem = this.domNode.firstElementChild;
 
 	while (elem) {
 		var menuElement = elem.firstElementChild;
@@ -178,3 +180,4 @@ Menubar.prototype.getIndexFirstChars = function (startIndex, char) {
 	return -1;
 };
 
+export var Menubar;

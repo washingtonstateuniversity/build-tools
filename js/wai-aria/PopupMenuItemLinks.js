@@ -202,3 +202,5 @@ MenuItem.prototype.handleMouseout = function (event) {
 	this.menu.hasHover = false;
 	setTimeout(this.menu.close.bind(this.menu, false), 300);
 };
+
+export var MenuItem;
