@@ -119,6 +119,7 @@ Menubar.prototype.setFocusToLastItem = function (flag) {
 
 Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
 	var index;
+	var newItem;
 
 	if (currentItem === this.firstItem) {
 		newItem = this.lastItem;
@@ -134,6 +135,7 @@ Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
 
 Menubar.prototype.setFocusToNextItem = function (currentItem) {
 	var index;
+	var newItem;
 
 	if (currentItem === this.lastItem) {
 		newItem = this.firstItem;
