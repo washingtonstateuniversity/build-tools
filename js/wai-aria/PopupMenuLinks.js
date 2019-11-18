@@ -3,7 +3,7 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
-import { MenuItem } from '@wsu/build-tools/js/wai-aria/PopupMenuItemLinks';
+import { MenuItem } from './PopupMenuItemLinks';
 
 var PopupMenu = function (domNode, controllerObj) {
 	var elementChildren,

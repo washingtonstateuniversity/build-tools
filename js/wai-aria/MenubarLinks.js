@@ -3,7 +3,7 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
-import { MenubarItem } from '@wsu/build-tools/js/wai-aria/MenubarItemLinks';
+import { MenubarItem } from './MenubarItemLinks';
 
 var Menubar = function (domNode) {
 	var elementChildren,
