@@ -5,8 +5,6 @@ export default class wsu_bt_priorityNav {
 		this.mainNavSelector = mainNavSelector;
 		this.window = window;
 		this.document = document;
-
-		this.init();
 	}
 
 	// Methods
