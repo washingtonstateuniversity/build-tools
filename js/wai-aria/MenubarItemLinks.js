@@ -38,8 +38,7 @@ MenubarItem.prototype.init = function () {
 	this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
 	this.domNode.addEventListener('focus', this.handleFocus.bind(this));
 	this.domNode.addEventListener('blur', this.handleBlur.bind(this));
-	this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-	this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
+	this.domNode.addEventListener('click', this.handleClick.bind(this));
 
 	// Initialize pop up menus
 
@@ -142,14 +141,18 @@ MenubarItem.prototype.handleBlur = function (event) {
 	this.menu.hasFocus = false;
 };
 
-MenubarItem.prototype.handleMouseover = function (event) {
-	this.hasHover = true;
-	this.popupMenu.open();
-};
+MenubarItem.prototype.handleClick = function (event) {
+	event.preventDefault();
 
-MenubarItem.prototype.handleMouseout = function (event) {
-	this.hasHover = false;
-	setTimeout(this.popupMenu.close.bind(this.popupMenu, false), 300);
+	const subMenu = event.target.nextElementSibling;
+
+	if (subMenu != null) {
+		if (event.target.hasAttribute('aria-expanded') && event.target.getAttribute('aria-expanded') == 'false') {
+			event.target.setAttribute('aria-expanded', 'true');
+		} else {
+			event.target.setAttribute('aria-expanded', 'false');
+		}
+	}
 };
 
 export var MenubarItem;
