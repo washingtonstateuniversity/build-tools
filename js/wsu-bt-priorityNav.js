@@ -6,6 +6,8 @@ export default class wsu_bt_priorityNav {
 		this.window = window;
 		this.params = params;
 		this.breakpoints = [];
+		this.mainNavWidth = null;
+		this.screenWidth = null;
 	}
 
 	// Methods
@@ -73,6 +75,7 @@ export default class wsu_bt_priorityNav {
 		if (this.breakpoints.length == 0) {
 			this.destroyPriorityNav();
 		}
+
 	}
 
 	calculateWidths() {
