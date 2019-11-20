@@ -20,13 +20,7 @@ export default class wsu_bt_priorityNav {
 		}
 
 		if (this.getPriorityNav != null) {
-
 			this.resizeNav();
-
-			if (this.breakpoints.length < 1) {
-				this.destroyPriorityNav();
-			}
-
 		}
 	}
 
@@ -46,7 +40,7 @@ export default class wsu_bt_priorityNav {
 		priorityNavListItemLink.setAttribute('class', this.params['priorityNavListItemLinkClassName']);
 		priorityNavListItemLink.setAttribute('role', 'menuitem');
 		priorityNavListItemLink.setAttribute('tabindex', '-1');
-		// TODO: add aria-expanded support
+		priorityNavListItemLink.setAttribute('aria-expanded', 'false');
 
 		// Create unordered list item container <ul>
 		priorityNavUnorderedList.setAttribute('class', this.params['priorityNavListItemListClassName']);
@@ -61,33 +55,35 @@ export default class wsu_bt_priorityNav {
 
 	resizeNav() {
 
-		console.log('Main Nav Width: ' + this.getMainNavWidth);
-		console.log('Screen Width: ' + this.getScreenWidth);
-		console.log(this.breakpoints);
+		this.calculateWidths();
 
-		while (this.getScreenWidth <= this.getMainNavWidth && this.getMainNav.children.length > 0) {
+		while (this.screenWidth <= this.mainNavWidth && this.getMainNav.children.length > 0) {
 			const itemToMove = this.getMainNav.children[this.getMainNav.children.length - 2];
 			this.moveToPriorityNav(itemToMove);
-
-			console.log('true 1');
+			this.calculateWidths();
 		}
 
-		while (this.getScreenWidth >= this.breakpoints[this.breakpoints.length - 1] && this.getPriorityNavSubmenu.children.length > 0) {
-			const itemToMove = this.getPriorityNavSubmenu.children[0];
-			this.moveToMainNav(itemToMove);
-
-			console.log('true 2');
+		while (this.screenWidth >= this.breakpoints[this.breakpoints.length - 1] && this.getPriorityNavSubmenu.children.length > 0) {
+			this.moveToMainNav(this.getPriorityNavSubmenu.children[0]);
 		}
 
+		if (this.breakpoints.length == 0) {
+			this.destroyPriorityNav();
+		}
+	}
+
+	calculateWidths() {
+		this.mainNavWidth = this.getMainNavWidth;
+		this.screenWidth = this.getScreenWidth;
 	}
 
 	moveToPriorityNav(itemToMove) {
-		this.getPriorityNavSubmenu.prepend(itemToMove);
-		this.breakpoints.push(this.getMainNavWidth);
+		this.getPriorityNavSubmenu.insertAdjacentElement('afterbegin', itemToMove);
+		this.breakpoints.push(this.mainNavWidth);
 	}
 
 	moveToMainNav(itemToMove) {
-		this.getMainNav.append(itemToMove);
+		this.getMainNav.insertBefore(itemToMove, this.getMainNav.lastElementChild);
 		this.breakpoints.pop();
 	}
 
@@ -119,5 +115,10 @@ export default class wsu_bt_priorityNav {
 	get getPriorityNavSubmenu() {
 		const priorityNav = this.document.querySelector('.' + this.params['priorityNavListItemListClassName']);
 		return priorityNav;
+	}
+
+	get getBreakpoints() {
+		const breakpoints = this.breakpoints;
+		return breakpoints;
 	}
 }
