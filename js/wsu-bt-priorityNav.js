@@ -57,16 +57,19 @@ export default class wsu_bt_priorityNav {
 
 		this.calculateWidths();
 
+		// Move items to priority nav
 		while (this.screenWidth <= this.mainNavWidth && this.getMainNav.children.length > 0) {
 			const itemToMove = this.getMainNav.children[this.getMainNav.children.length - 2];
 			this.moveToPriorityNav(itemToMove);
 			this.calculateWidths();
 		}
 
+		// Move items to main nav
 		while (this.screenWidth >= this.breakpoints[this.breakpoints.length - 1] && this.getPriorityNavSubmenu.children.length > 0) {
 			this.moveToMainNav(this.getPriorityNavSubmenu.children[0]);
 		}
 
+		// Turn off priority nav if unnecessary
 		if (this.breakpoints.length == 0) {
 			this.destroyPriorityNav();
 		}
