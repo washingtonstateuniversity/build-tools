@@ -2,12 +2,12 @@
 
 export default class wsu_bt_priorityNav {
 	constructor(params) {
-		this.document = document;
-		this.window = window;
-		this.params = params;
 		this.breakpoints = [];
+		this.document = document;
 		this.mainNavWidth = null;
+		this.params = params;
 		this.screenWidth = null;
+		this.window = window;
 	}
 
 	// Methods
@@ -56,7 +56,6 @@ export default class wsu_bt_priorityNav {
 	}
 
 	resizeNav() {
-
 		this.calculateWidths();
 
 		// Move items to priority nav
@@ -75,7 +74,6 @@ export default class wsu_bt_priorityNav {
 		if (this.breakpoints.length == 0) {
 			this.destroyPriorityNav();
 		}
-
 	}
 
 	calculateWidths() {
