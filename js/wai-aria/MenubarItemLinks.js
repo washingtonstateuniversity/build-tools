@@ -102,11 +102,15 @@ MenubarItem.prototype.handleKeydown = function (event) {
 			break;
 
 		case this.keyCode.TAB:
-			this.popupMenu.close(true);
+			if (this.popupMenu != false) {
+				this.popupMenu.close(true);
+			}
 			break;
 
 		case this.keyCode.ESC:
-			this.popupMenu.close(true);
+			if (this.popupMenu != false) {
+				this.popupMenu.close(true);
+			}
 			break;
 
 		default:
