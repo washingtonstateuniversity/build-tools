@@ -52,7 +52,7 @@ export default class wsu_bt_priority_nav {
 		// Append to dom
 		priority_nav_list_item.appendChild(priority_nav_list_item_link);
 		priority_nav_list_item.appendChild(priority_nav_unordered_list);
-		document.querySelector('.wsu-s-nav-horizontal__nav-list').appendChild(priority_nav_list_item); // TODO: abstract query selector class name
+		document.querySelector(this.params['main_nav_selector']).appendChild(priority_nav_list_item);
 	}
 
 	resize_nav() {
