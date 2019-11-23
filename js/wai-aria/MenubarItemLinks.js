@@ -38,7 +38,6 @@ MenubarItem.prototype.init = function () {
 	this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
 	this.domNode.addEventListener('focus', this.handleFocus.bind(this));
 	this.domNode.addEventListener('blur', this.handleBlur.bind(this));
-	this.domNode.addEventListener('click', this.handleClick.bind(this));
 
 	// Initialize pop up menus
 
@@ -139,20 +138,6 @@ MenubarItem.prototype.handleFocus = function (event) {
 
 MenubarItem.prototype.handleBlur = function (event) {
 	this.menu.hasFocus = false;
-};
-
-MenubarItem.prototype.handleClick = function (event) {
-	event.preventDefault();
-
-	const subMenu = event.target.nextElementSibling;
-
-	if (subMenu != null) {
-		if (event.target.hasAttribute('aria-expanded') && event.target.getAttribute('aria-expanded') == 'false') {
-			event.target.setAttribute('aria-expanded', 'true');
-		} else {
-			event.target.setAttribute('aria-expanded', 'false');
-		}
-	}
 };
 
 export var MenubarItem;
