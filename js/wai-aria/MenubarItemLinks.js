@@ -3,7 +3,7 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
-import { PopupMenu } from '@wsu/build-tools/js/wai-aria/PopupMenuLinks';
+import { PopupMenu } from './PopupMenuLinks';
 
 var MenubarItem = function (domNode, menuObj) {
 
@@ -38,8 +38,6 @@ MenubarItem.prototype.init = function () {
 	this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
 	this.domNode.addEventListener('focus', this.handleFocus.bind(this));
 	this.domNode.addEventListener('blur', this.handleBlur.bind(this));
-	this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-	this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
 	// Initialize pop up menus
 
@@ -104,11 +102,15 @@ MenubarItem.prototype.handleKeydown = function (event) {
 			break;
 
 		case this.keyCode.TAB:
-			this.popupMenu.close(true);
+			if (this.popupMenu != false) {
+				this.popupMenu.close(true);
+			}
 			break;
 
 		case this.keyCode.ESC:
-			this.popupMenu.close(true);
+			if (this.popupMenu != false) {
+				this.popupMenu.close(true);
+			}
 			break;
 
 		default:
@@ -140,16 +142,6 @@ MenubarItem.prototype.handleFocus = function (event) {
 
 MenubarItem.prototype.handleBlur = function (event) {
 	this.menu.hasFocus = false;
-};
-
-MenubarItem.prototype.handleMouseover = function (event) {
-	this.hasHover = true;
-	this.popupMenu.open();
-};
-
-MenubarItem.prototype.handleMouseout = function (event) {
-	this.hasHover = false;
-	setTimeout(this.popupMenu.close.bind(this.popupMenu, false), 300);
 };
 
 export var MenubarItem;

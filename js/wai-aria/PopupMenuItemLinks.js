@@ -2,11 +2,10 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
-var MenuItem = function (domNode, menuObj) {
 
-	if (typeof popupObj !== 'object') {
-		popupObj = false;
-	}
+import { PopupMenu } from './PopupMenuLinks';
+
+var MenuItem = function (domNode, menuObj) {
 
 	this.domNode = domNode;
 	this.menu = menuObj;
