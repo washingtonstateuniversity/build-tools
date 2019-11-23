@@ -102,12 +102,12 @@ export default class wsu_bt_priority_nav {
 	}
 
 	get get_main_nav_width() {
-		const mainNavInnerWidth = this.document.querySelector(this.params['mainNavSelector']).offsetWidth;
+		const mainNavInnerWidth = this.document.querySelector(this.params['main_nav_selector']).offsetWidth;
 		return mainNavInnerWidth;
 	}
 
 	get get_main_nav() {
-		const mainNav = document.querySelector(this.params['mainNavSelector']);
+		const mainNav = document.querySelector(this.params['main_nav_selector']);
 		return mainNav;
 	}
 
