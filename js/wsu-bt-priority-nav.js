@@ -15,12 +15,16 @@ export default class wsu_bt_priority_nav {
 	}
 
 	update_nav() {
-		// Check if all fonts are loaded TODO: fix for ie 11 & edge
+		// Check if all fonts are loaded
+		// TODO: Fix for ie 11 & edge (needs testing)
 		this.document.fonts.ready.then(() => {
+
+			// If doesn't exist & Nav is greater than screen width, create nav
 			if (this.get_priority_nav == null && this.get_screen_width <= this.get_main_nav_width) {
 				this.create_priority_nav();
 			}
 
+			// If nav exists, just resize it
 			if (this.get_priority_nav != null) {
 				this.resize_nav();
 			}
