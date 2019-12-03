@@ -1,5 +1,3 @@
-"use strict";
-
 export default class wsu_bt_aria_expanded {
 	constructor(params) {
 		this.params = params;
@@ -11,7 +9,6 @@ export default class wsu_bt_aria_expanded {
 		}
 
 		this.nav_items_selector = this.nav_items_selector + '[aria-expanded="true"]';
-		this.nav_items = document.querySelectorAll(this.nav_items_selector);
 	}
 
 	init() {
@@ -20,6 +17,9 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	update_items() {
+		// Query nav items
+		this.nav_items = document.querySelectorAll(this.nav_items_selector);
+
 		// Set collapsible nav items to hidden
 		this.nav_items.forEach(nav_item => {
 			nav_item.setAttribute('aria-expanded', 'false');
