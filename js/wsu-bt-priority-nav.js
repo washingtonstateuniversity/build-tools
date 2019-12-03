@@ -1,3 +1,5 @@
+import wsu_bt_aria_expanded from '../../wsu-build-tools/js/wsu-bt-aria-expanded';
+
 export default class wsu_bt_priority_nav {
 	constructor(params) {
 		this.breakpoints = [];
@@ -28,6 +30,9 @@ export default class wsu_bt_priority_nav {
 			if (this.get_priority_nav != null) {
 				this.resize_nav();
 			}
+
+			this.initiateAriaExpanded();
+
 		});
 	}
 
@@ -100,6 +105,14 @@ export default class wsu_bt_priority_nav {
 
 	destroyPriorityNav() {
 		this.get_priority_nav.remove();
+	}
+
+	initiateAriaExpanded() {
+		// Initiate collapsable aria-expanded items
+		var expanded_aria_items = new wsu_bt_aria_expanded({
+			nav_item_selector: '.' + this.params['priority_nav_list_item_link_class_name']
+		});
+		expanded_aria_items.init();
 	}
 
 	// Getters
