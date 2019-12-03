@@ -1,5 +1,3 @@
-"use strict";
-
 export default class wsu_bt_priority_nav {
 	constructor(params) {
 		this.breakpoints = [];
@@ -17,13 +15,16 @@ export default class wsu_bt_priority_nav {
 	}
 
 	update_nav() {
-		if (this.get_priority_nav == null && this.get_screen_width <= this.get_main_nav_width) {
-			this.create_priority_nav();
-		}
+		// Check if all fonts are loaded TODO: fix for ie 11 & edge
+		this.document.fonts.ready.then(() => {
+			if (this.get_priority_nav == null && this.get_screen_width <= this.get_main_nav_width) {
+				this.create_priority_nav();
+			}
 
-		if (this.get_priority_nav != null) {
-			this.resize_nav();
-		}
+			if (this.get_priority_nav != null) {
+				this.resize_nav();
+			}
+		});
 	}
 
 	create_priority_nav() {
@@ -37,12 +38,14 @@ export default class wsu_bt_priority_nav {
 		priority_nav_list_item.setAttribute('role', 'none');
 
 		// Create list item link <a>
-		priority_nav_list_item_link.innerHTML = "More";
+		priority_nav_list_item_link.innerHTML = this.params['more_inner_html'];
 		priority_nav_list_item_link.setAttribute('href', '#');
 		priority_nav_list_item_link.setAttribute('class', this.params['priority_nav_list_item_link_class_name']);
+		priority_nav_list_item_link.setAttribute('id', 'more');
 		priority_nav_list_item_link.setAttribute('role', 'menuitem');
 		priority_nav_list_item_link.setAttribute('tabindex', '-1');
-		priority_nav_list_item_link.setAttribute('aria-expanded', 'false');
+		priority_nav_list_item_link.setAttribute('aria-expanded', 'true');
+		priority_nav_list_item_link.setAttribute('aria-haspopup', 'true');
 
 		// Create unordered list item container <ul>
 		priority_nav_unordered_list.setAttribute('class', this.params['priority_nav_list_item_list_class_name']);
