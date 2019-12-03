@@ -46,17 +46,11 @@ var PopupMenu = function (domNode, controllerObj) {
 *   @method PopupMenu.prototype.init
 *
 *   @desc
-*       Add domNode event listeners for mouseover and mouseout. Traverse
-*       domNode children to configure each menuitem and populate menuitems
-*       array. Initialize firstItem and lastItem properties.
+*       Traverse domNode children to configure each menuitem and populate
+*       menuitems array. Initialize firstItem and lastItem properties.
 */
 PopupMenu.prototype.init = function () {
 	var childElement, menuElement, menuItem, textContent, numItems, label;
-
-	// Configure the domNode itself
-
-	this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-	this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
 	// Traverse the element children of domNode: configure each with
 	// menuitem role behavior and store reference in menuitems array.
