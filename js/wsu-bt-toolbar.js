@@ -1,21 +1,20 @@
 // Document Body
 var body = document.getElementsByTagName('body')[0];
-body.style.paddingTop = "34px";
+body.style.paddingTop = "32px";
 
 // Toolbar Wrapper
 var toolbar = document.createElement('div');
 toolbar.style.backgroundColor = "#1a1a1a";
 toolbar.style.color = "#eceff1";
-toolbar.style.position = "absolute";
+toolbar.style.position = "fixed";
 toolbar.style.top = "0";
 toolbar.style.width = "calc(100%)";
-toolbar.style.height = "33px";
+toolbar.style.height = "32px";
 toolbar.style.display = "flex";
 toolbar.style.justifyContent = "space-between";
 toolbar.style.alignItems = "center";
 toolbar.style.fontSize = "12px";
 toolbar.style.flexWrap = "wrap";
-toolbar.style.borderBottom = "1px solid #f2f2f2";
 
 // Greeting
 var greetingContainer = document.createElement('div');
@@ -36,6 +35,8 @@ breakpointContainer.style.backgroundColor = "#A60F2D";
 breakpointContainer.style.display = "flex";
 breakpointContainer.style.alignItems = "center";
 breakpointContainer.style.padding = "7px 3vw";
+breakpointContainer.style.fontSize = "12px";
+breakpointContainer.style.lineHeight = "12px";
 
 breakpointContainer.appendChild(breakpointContent);
 
