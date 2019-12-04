@@ -1,15 +1,15 @@
 // NOTE: this file assumes that there is no other styles being set with these same values.
 //       This may cause issues. Need to figure out a way to package one with baseline styles
-//       and one with all styles being passed through each component class name. 
+//       and one with all styles being passed through each component class name.
 
-/* Document Styles 
+/* Document Styles
 ======================= */
 html {
 	font-family: $wsu-bt-primary-font-family;
 	font-size: $wsu-bt-base-font-size;
 }
 
-/* Link Styles 
+/* Link Styles
 ======================= */
 a {
 	color: $wsu-bt-link-color--base;
@@ -27,7 +27,7 @@ a {
 	}
 }
 
-/* Heading Styles 
+/* Heading Styles
 ======================= */
 h1,
 h2,
@@ -35,5 +35,5 @@ h3,
 h4,
 h5,
 h6 {
-    transition: font-size timing(cougar, standard);
+	transition: font-size timing(cougar, standard);
 }
