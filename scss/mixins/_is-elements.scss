@@ -32,12 +32,12 @@
 
 /* Is a psuedo element
 ======================= */
-@mixin is-psuedo-element($position: relative) {
+@mixin is-psuedo-element($position: relative, $display: block, $content: "") {
 	position: $position;
 
-	display: block;
+	display: $display;
 
-	content: "";
+	content: $content;
 }
 
 /* Is visually hidden 
