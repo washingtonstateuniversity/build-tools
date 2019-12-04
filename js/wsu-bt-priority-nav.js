@@ -1,4 +1,5 @@
 import wsu_bt_aria_expanded from '../../wsu-build-tools/js/wsu-bt-aria-expanded';
+import { Menubar } from '../../wsu-build-tools/js/wai-aria/MenubarLinks';
 
 export default class wsu_bt_priority_nav {
 	constructor(params) {
@@ -31,8 +32,8 @@ export default class wsu_bt_priority_nav {
 				this.resize_nav();
 			}
 
+			this.initiateKeyboardNavigationSupport();
 			this.initiateAriaExpanded();
-
 		});
 	}
 
@@ -107,12 +108,18 @@ export default class wsu_bt_priority_nav {
 		this.get_priority_nav.remove();
 	}
 
+	// Initiate collapsable aria-expanded items
 	initiateAriaExpanded() {
-		// Initiate collapsable aria-expanded items
 		var expanded_aria_items = new wsu_bt_aria_expanded({
 			nav_item_selector: '.' + this.params['priority_nav_list_item_link_class_name']
 		});
 		expanded_aria_items.init();
+	}
+
+	// Initiate keyboard controls for accessibility support
+	initiateKeyboardNavigationSupport() {
+		var menubar = new Menubar(document.querySelector(this.params['main_nav_selector']));
+		menubar.init();
 	}
 
 	// Getters
