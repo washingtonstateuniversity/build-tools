@@ -4,6 +4,7 @@
 // Example: @include mq('small') { color: red; }
 //
 $breakpoints: (
+	"xsmall":  $wsu-bt-breakpoint--xs,
 	"small":  $wsu-bt-breakpoint--small,
 	"medium": $wsu-bt-breakpoint--medium,
 	"large":  $wsu-bt-breakpoint--large,
