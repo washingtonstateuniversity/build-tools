@@ -20,7 +20,7 @@ var expanded_aria_items = new wsu_bt_aria_expanded({
 3. Initialize class `expanded_aria_items.init();`
 
 ### CSS
-1. Copy CSS into your stylesheet:
+1. Copy CSS into your stylesheet
 ```
 .wsu-s-nav-vertical__nav-link[aria-expanded="true"] ~ .wsu-s-nav-horizontal__nav-list,
 .wsu-s-nav-vertical__nav-link[aria-expanded="true"] ~ .wsu-s-nav-horizontal__nav-list--has-more-items {
@@ -32,4 +32,5 @@ var expanded_aria_items = new wsu_bt_aria_expanded({
 	// Hide stuff here
 }
 ```
-2. Update the properties to show/hide the elements how you'd like them to behave! 
+2. Update class names to target your nav link items and their subsequent nav list containers (and potentially even more sub-menu containers 😃) 
+3. Update the properties to show/hide the elements how you'd like them to behave 💃
