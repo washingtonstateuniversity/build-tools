@@ -5,7 +5,7 @@ This script does the following:
 3. Add events listeners to each item so, on click the attribute is toggled
 
 ## How to Use
-_This assumes you've already installed the entire Build Tools package._
+_This assumes you've already installed the entire Build Tools package. (See main Build Tools package here)[https://github.com/washingtonstateuniversity/wsu-build-tools]_ 
 
 ### JS
 1. In your js add `import wsu_bt_aria_expanded from '@wsu-build-tools/js/wsu-bt-aria-expanded';`
@@ -20,5 +20,16 @@ var expanded_aria_items = new wsu_bt_aria_expanded({
 3. Initialize class `expanded_aria_items.init();`
 
 ### CSS
-1. Import (maybe copy is better?) 
-2. TODO: finish writing read me :) 
+1. Copy CSS into your stylesheet:
+```
+.wsu-s-nav-vertical__nav-link[aria-expanded="true"] ~ .wsu-s-nav-horizontal__nav-list,
+.wsu-s-nav-vertical__nav-link[aria-expanded="true"] ~ .wsu-s-nav-horizontal__nav-list--has-more-items {
+	// Show stuff here
+}
+
+.wsu-s-nav-vertical__nav-link[aria-expanded="false"] ~ .wsu-s-nav-horizontal__nav-list,
+.wsu-s-nav-vertical__nav-link[aria-expanded="false"] ~ .wsu-s-nav-horizontal__nav-list--has-more-items {
+	// Hide stuff here
+}
+```
+2. Update the properties to show/hide the elements how you'd like them to behave! 
