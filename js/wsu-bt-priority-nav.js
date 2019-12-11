@@ -1,4 +1,4 @@
-import wsu_bt_aria_expanded from '../../wsu-build-tools/js/wsu-bt-aria-expanded';
+import wsu_bt_aria_expanded from '../../wsu-build-tools/js/aria-expanded/wsu-bt-aria-expanded';
 import { Menubar } from '../../wsu-build-tools/js/wai-aria/MenubarLinks';
 
 export default class wsu_bt_priority_nav {
