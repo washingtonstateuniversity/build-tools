@@ -5,7 +5,7 @@ This script does the following:
 3. Add events listeners to each item so, on click the attribute is toggled
 
 ## How to Use
-_This assumes you've already installed the entire Build Tools package. (See main Build Tools package here)[https://github.com/washingtonstateuniversity/wsu-build-tools]_ 
+_This assumes you've already installed the entire Build Tools package. [See main Build Tools package readme here.](https://github.com/washingtonstateuniversity/wsu-build-tools)_ 
 
 ### JS
 1. In your js add `import wsu_bt_aria_expanded from '@wsu-build-tools/js/wsu-bt-aria-expanded';`
