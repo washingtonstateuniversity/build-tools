@@ -18,5 +18,8 @@
     "homepage": "https://github.com/washingtonstateuniversity/wsu-build-tools#readme",
     "devDependencies": {
         "modularscale-sass": "^3.0.10"
+    },
+    "dependencies": {
+        "mitt": "^1.2.0"
     }
 }
