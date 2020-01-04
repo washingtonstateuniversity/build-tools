@@ -2,13 +2,28 @@ export default class wsu_bt_aria_expanded {
 	constructor(params) {
 		this.params = params;
 		this.nav_items = null;
-		this.nav_items_selector = params.nav_item_selector;
 
-		if (typeof this.nav_items_selector === 'undefined') {
-			console.error('Undefined nav_item_selector. Please pass the selector you would like to be expandable.');
+		/**
+		 *
+		 * Assign nav_items_selectors to variable
+		 *
+		 */
+		this.nav_items_selectors = params.nav_item_selectors;
+
+		if (typeof this.nav_items_selectors === 'undefined') {
+			console.error('Undefined nav_item_selectors. Please pass the selector you would like to be expandable.');
 		}
 
-		this.nav_items_selector = this.nav_items_selector + '[aria-expanded="true"]';
+		/**
+		 *
+		 * Loop through selectors and append aria target
+		 *
+		 */
+		this.nav_items_selectors.forEach(function (elem, i, arr) {
+
+			arr[i] = elem + '[aria-expanded="true"]';
+
+		}, this.nav_items_selectors);
 	}
 
 	init() {
@@ -17,24 +32,26 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	update_items() {
-		// Query nav items
-		this.nav_items = document.querySelectorAll(this.nav_items_selector);
+		this.nav_items_selectors.forEach(elem => {
+			// Query nav items
+			this.nav_items = document.querySelectorAll(elem);
 
-		// Set collapsible nav items to hidden
-		this.nav_items.forEach(nav_item => {
-			nav_item.setAttribute('aria-expanded', 'false');
-		});
+			// Set collapsible nav items to hidden
+			this.nav_items.forEach(nav_item => {
+				nav_item.setAttribute('aria-expanded', 'false');
+			});
 
-		// Set collapsible nav items to toggle on click
-		this.nav_items.forEach(nav_item => {
-			nav_item.addEventListener('click', function (e) {
-				e.preventDefault;
+			// Set collapsible nav items to toggle on click
+			this.nav_items.forEach(nav_item => {
+				nav_item.addEventListener('click', function (e) {
+					e.preventDefault;
 
-				if (this.getAttribute('aria-expanded') == 'false') {
-					this.setAttribute('aria-expanded', 'true');
-				} else {
-					this.setAttribute('aria-expanded', 'false');
-				}
+					if (this.getAttribute('aria-expanded') == 'false') {
+						this.setAttribute('aria-expanded', 'true');
+					} else {
+						this.setAttribute('aria-expanded', 'false');
+					}
+				});
 			});
 		});
 	}
