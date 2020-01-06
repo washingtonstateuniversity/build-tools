@@ -61,7 +61,7 @@ export default class wsu_bt_vertical_nav {
 
 		/* Toggle */
 		document.querySelector('.wsu-s-nav-vertical__menu-icon-link').addEventListener('click', this.toggle.bind(this));
-		document.querySelector('.wsu-s-nav-vertical__nav-item--has-children').addEventListener('click', this.toggle.bind(this));
+		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); });
 	}
 
 	openCurrentTarget(e) {
