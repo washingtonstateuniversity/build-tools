@@ -4,25 +4,45 @@ import mitt from 'mitt'
 export default class wsu_bt_vertical_nav {
 	constructor(params) {
 		this.params = params;
-		this.nav_selector = '';
+		this.nav_item_selector = '';
 		this.nav_panel_control_selector = '';
+		this.nav_panel_selector = '';
 		this.nav_list_container_selector = '';
-		this.tree_mode = false;
+		this.tree_mode = false; // @TODO: needs to do something
 		document.emitter = mitt();
 
-		// Assign values
-		this.nav_selector = params.nav_selector;
+		/**
+		 *
+		 * Assign values to variables
+		 *
+		 */
 
-		if (typeof this.nav_selector === 'undefined') {
-			console.error('Undefined nav_selector. Please pass the selector you would like to be expandable.');
+		/* Navigation item selector */
+		this.nav_item_selector = params.nav_item_selector;
+
+		if (typeof this.nav_item_selector === 'undefined') {
+			console.error('Undefined nav_item_selector. Please pass the selector you would like to be expandable.');
 		}
 
+		/* Navigation Panel Control */
 		this.nav_panel_control_selector = params.nav_panel_control_selector;
 
 		if (typeof this.nav_panel_control_selector === 'undefined') {
 			console.error('Undefined nav_panel_control_selector. Please pass the selector you would like to be expandable.');
 		}
 
+		this.nav_panel_control = document.querySelector(this.nav_panel_control_selector);
+
+		/* Navigation Panel */
+		this.nav_panel_selector = params.nav_panel_selector;
+
+		if (typeof this.nav_panel_selector === 'undefined') {
+			console.error('Undefined nav_panel_selector. Please pass the selector you would like to be expandable.');
+		}
+
+		this.nav_panel = document.querySelector(this.nav_panel_selector);
+
+		/* Navigation List Container Selector */
 		this.nav_list_container_selector = params.nav_list_container_selector;
 
 		if (typeof this.nav_list_container_selector === 'undefined') {
@@ -36,9 +56,9 @@ export default class wsu_bt_vertical_nav {
 		 * Enable keyboard navigation accessibility
 		 *
 		 */
-		const nav_selector_elements = document.querySelectorAll(this.nav_list_container_selector);
+		const nav_item_selector_elements = document.querySelectorAll(this.nav_list_container_selector);
 		var keyboard_nav = new wsu_bt_keyboard_nav_accessibility({
-			elements: nav_selector_elements
+			elements: nav_item_selector_elements
 		});
 		keyboard_nav.init();
 
@@ -47,105 +67,79 @@ export default class wsu_bt_vertical_nav {
 		 * Set nav items to expanded false
 		 *
 		 */
-		document.querySelectorAll(this.nav_selector).forEach(elem => { elem.setAttribute('aria-expanded', 'false'); });
 		document.querySelector(this.nav_panel_control_selector).setAttribute('aria-expanded', 'false');
+		document.querySelectorAll(this.nav_item_selector).forEach(elem => { elem.setAttribute('aria-expanded', 'false'); });
 
 		/**
 		 *
-		 * Create event listeners for various controls
+		 * Create event listeners
 		 *
 		 */
 
-		/* Close */
-		document.querySelector('.wsu-s-nav-vertical__nav-container-close-link').addEventListener('click', this.close.bind(this));
+		/* Toggle Panels */
+		this.nav_panel_control.addEventListener('click', this.togglePanel.bind(this));
 
-		/* Toggle */
-		document.querySelector('.wsu-s-nav-vertical__menu-icon-link').addEventListener('click', this.toggle.bind(this));
-		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); });
+		/* Toggle Nav Items */
+		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // @TODO: Abstract selector as parameter
+
+		/* On panel open events */
+		document.emitter.on('wsu-vertical-nav--open', this.navOpened.bind(this));
 	}
 
 	openCurrentTarget(e) {
 		e.preventDefault;
-
-		if ('.' + e.target.className == this.nav_panel_control_selector) {
-			/* Set aria expanded attribute */
-			e.currentTarget.setAttribute('aria-expanded', 'true');
-
-			/* Add class to wrapper */
-			document.querySelector('.wsu-s-nav-vertical__wrapper').classList.add('wsu-s-nav-vertical__wrapper--open');
-
-			/**
-			 *
-			 * Event on open
-			 * wsu-vertical-nav--open
-			 *
-			 */
-			document.emitter.emit('wsu-vertical-nav--open');
-
-			/**
-			 *
-			 * Event after open completes
-			 * wsu-vertical-nav--after-open
-			 *
-			 */
-			const openAnimationTime = 800; // in ms the time it takes for the menu to finish opening
-
-			setTimeout(() => {
-				document.emitter.emit('wsu-vertical-nav--after-open');
-			}, openAnimationTime);
-		} else {
-			e.currentTarget.setAttribute('aria-expanded', 'true');
-		}
+		e.currentTarget.setAttribute('aria-expanded', 'true');
 	}
 
 	openTarget(e) {
 		e.preventDefault;
+		e.target.setAttribute('aria-expanded', 'true');
+	}
 
-		if ('.' + e.target.className == this.nav_panel_control_selector) {
-			/* Set aria expanded attribute */
-			e.target.setAttribute('aria-expanded', 'true');
+	openPanel() {
+		/* Set aria expanded attribute */
+		this.nav_panel_control.setAttribute('aria-expanded', 'true');
 
-			/* Add class to wrapper */
-			document.querySelector('.wsu-s-nav-vertical__wrapper').classList.add('wsu-s-nav-vertical__wrapper--open');
+		console.log(this.nav_panel);
 
-			/**
-			 *
-			 * Event on open
-			 * wsu-vertical-nav--open
-			 *
-			 */
-			document.emitter.emit('wsu-vertical-nav--open');
+		/* Add class to wrapper */
+		this.nav_panel.classList.add('wsu-s-nav-vertical__wrapper--open');
 
-			/**
-			 *
-			 * Event after open completes
-			 * wsu-vertical-nav--after-open
-			 *
-			 */
-			const openAnimationTime = 800; // in ms the time it takes for the menu to finish opening
-			setTimeout(() => {
-				document.emitter.emit('wsu-vertical-nav--after-open');
-			}, openAnimationTime);
-		} else {
-			e.target.setAttribute('aria-expanded', 'true');
-		}
+		/**
+		 *
+		 * Event on open
+		 * wsu-vertical-nav--open
+		 *
+		 */
+		document.emitter.emit('wsu-vertical-nav--open');
+
+		/**
+		 *
+		 * Event after open completes
+		 * wsu-vertical-nav--after-open
+		 *
+		 */
+		const openAnimationTime = 800; // in ms the time it takes for the menu to finish opening
+
+		setTimeout(() => {
+			document.emitter.emit('wsu-vertical-nav--after-open');
+		}, openAnimationTime);
 	}
 
 	close(e) {
 		e.preventDefault;
+		e.target.setAttribute('aria-expanded', 'false');
+	}
 
-		if (e.currentTarget.className == 'wsu-s-nav-vertical__nav-container-close-link') {
+	closePanel() {
+		/* Set aria expanded attribute */
+		this.nav_panel_control.setAttribute('aria-expanded', 'false');
 
-			document.querySelector('.wsu-s-nav-vertical__wrapper').classList.remove('wsu-s-nav-vertical__wrapper--open');
-			document.querySelectorAll('[aria-expanded="true"]').forEach(el => {
-				el.setAttribute('aria-expanded', 'false');
-			});
+		/* Remove open class */
+		this.nav_panel.classList.remove('wsu-s-nav-vertical__wrapper--open');
 
-			document.emitter.emit('close');
-
-		} else {
-			e.target.setAttribute('aria-expanded', 'false');
-		}
+		/* Emit close event */
+		document.emitter.emit('close');
 	}
 
 	toggle(e) {
@@ -157,5 +151,44 @@ export default class wsu_bt_vertical_nav {
 			this.close(e);
 		}
 	}
+
+	togglePanel() {
+		if (this.nav_panel_control.getAttribute('aria-expanded') == 'true') {
+			this.closePanel();
+		} else {
+			this.openPanel();
+		}
+	}
+
+	navOpened() {
+		/**
+		 *
+		 * Animate menu items in on vert nav open using emitters
+		 *
+		 */
+		const navItems = document.querySelectorAll('.wsu-s-nav-vertical__nav-list-container > li');
+		const navItemsCount = navItems.length;
+
+		for (var i = 0; i < navItemsCount; i++) {
+			(function (i) {
+				const duration = 250;
+				let increment = duration + (duration * i);
+
+				setTimeout(function () {
+					navItems[i].style.opacity = 1;
+					navItems[i].style.marginLeft = '0';
+				}, increment);
+			})(i);
+		};
+
+
+		/**
+		 *
+		 * Create event listener for allowing panel to be closed on click
+		 *
+		 */
+		// document.querySelector('.wsu-s-nav-vertical__wrapper--open').addEventListener('click', this.close.bind(this)); // @TODO: Abstract selector as parameter
+	}
+
 
 }
