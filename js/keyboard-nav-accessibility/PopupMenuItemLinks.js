@@ -32,7 +32,6 @@ MenuItem.prototype.init = function () {
 	this.domNode.tabIndex = -1;
 
 	this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-	this.domNode.addEventListener('click', this.handleClick.bind(this));
 	this.domNode.addEventListener('focus', this.handleFocus.bind(this));
 	this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
@@ -165,11 +164,6 @@ MenuItem.prototype.setExpanded = function (value) {
 	else {
 		this.domNode.setAttribute('aria-expanded', 'false');
 	}
-};
-
-MenuItem.prototype.handleClick = function (event) {
-	this.menu.setFocusToController();
-	this.menu.close(true);
 };
 
 MenuItem.prototype.handleFocus = function (event) {
