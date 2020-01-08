@@ -83,7 +83,7 @@ export default class wsu_bt_vertical_nav {
 		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // @TODO: Abstract selector as parameter
 
 		/* On panel open events */
-		document.emitter.on('wsu-vertical-nav--open', this.navOpened.bind(this));
+		document.emitter.on('wsu-vertical-nav--after-open', this.navOpened.bind(this));
 	}
 
 	openCurrentTarget(e) {
@@ -99,8 +99,6 @@ export default class wsu_bt_vertical_nav {
 	openPanel() {
 		/* Set aria expanded attribute */
 		this.nav_panel_control.setAttribute('aria-expanded', 'true');
-
-		console.log(this.nav_panel);
 
 		/* Add class to wrapper */
 		this.nav_panel.classList.add('wsu-s-nav-vertical__wrapper--open');
@@ -119,7 +117,7 @@ export default class wsu_bt_vertical_nav {
 		 * wsu-vertical-nav--after-open
 		 *
 		 */
-		const openAnimationTime = 800; // in ms the time it takes for the menu to finish opening
+		const openAnimationTime = 600; // in ms the time it takes for the menu to finish opening
 
 		setTimeout(() => {
 			document.emitter.emit('wsu-vertical-nav--after-open');
@@ -161,6 +159,11 @@ export default class wsu_bt_vertical_nav {
 	}
 
 	navOpened() {
+		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
+
+		closeButton.style.opacity = 1;
+		closeButton.style.marginTop = 0;
+
 		/**
 		 *
 		 * Animate menu items in on vert nav open using emitters
@@ -180,7 +183,6 @@ export default class wsu_bt_vertical_nav {
 				}, increment);
 			})(i);
 		};
-
 
 		/**
 		 *

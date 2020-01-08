@@ -74,6 +74,7 @@ $unit-3xl: $wsu-bt-base-unit * 2; // 40px
 /* Transition Variables
 ======================= */
 $transition-timings: (
+	ease: ease,
 	standard: cubic-bezier(0, 0, 0.03, 1),
 	easy-does-it: cubic-bezier(0.52, 0.67, 0.3, 1)
 );
