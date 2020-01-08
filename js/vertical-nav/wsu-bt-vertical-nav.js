@@ -83,7 +83,7 @@ export default class wsu_bt_vertical_nav {
 		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // @TODO: Abstract selector as parameter
 
 		/* On panel open events */
-		document.emitter.on('wsu-vertical-nav--after-open', this.navOpened.bind(this));
+		document.emitter.on('wsu-vertical-nav--after-open', this.panelOpened.bind(this));
 	}
 
 	openCurrentTarget(e) {
@@ -158,7 +158,7 @@ export default class wsu_bt_vertical_nav {
 		}
 	}
 
-	navOpened() {
+	panelOpened() {
 		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
 
 		closeButton.style.opacity = 1;
@@ -189,8 +189,11 @@ export default class wsu_bt_vertical_nav {
 		 * Create event listener for allowing panel to be closed on click
 		 *
 		 */
-		// document.querySelector('.wsu-s-nav-vertical__wrapper--open').addEventListener('click', this.close.bind(this)); // @TODO: Abstract selector as parameter
+		const _this = this;
+		window.addEventListener('click', function (e) {
+			if (e.target.className == "wsu-s-nav-vertical__wrapper wsu-s-nav-vertical__wrapper--open") {
+				_this.closePanel();
+			}
+		});
 	}
-
-
 }
