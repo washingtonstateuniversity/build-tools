@@ -19,11 +19,15 @@ export default class wsu_bt_aria_expanded {
 		 * Loop through selectors and append aria target
 		 *
 		 */
-		this.nav_items_selectors.forEach(function (elem, i, arr) {
+		if (Array.isArray(this.nav_items_selectors)) {
+			this.nav_items_selectors.forEach(function (elem, i, arr) {
 
-			arr[i] = elem + '[aria-expanded="true"]';
+				arr[i] = elem + '[aria-expanded="true"]';
 
-		}, this.nav_items_selectors);
+			}, this.nav_items_selectors);
+		} else {
+			this.nav_items_selectors = this.nav_items_selectors + '[aria-expanded="true"]';
+		}
 	}
 
 	init() {
@@ -32,9 +36,32 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	update_items() {
-		this.nav_items_selectors.forEach(elem => {
+		if (Array.isArray(this.nav_items_selectors)) {
+			this.nav_items_selectors.forEach(elem => {
+				// Query nav items
+				this.nav_items = document.querySelectorAll(elem);
+
+				// Set collapsible nav items to hidden
+				this.nav_items.forEach(nav_item => {
+					nav_item.setAttribute('aria-expanded', 'false');
+				});
+
+				// Set collapsible nav items to toggle on click
+				this.nav_items.forEach(nav_item => {
+					nav_item.addEventListener('click', function (e) {
+						e.preventDefault;
+
+						if (this.getAttribute('aria-expanded') == 'false') {
+							this.setAttribute('aria-expanded', 'true');
+						} else {
+							this.setAttribute('aria-expanded', 'false');
+						}
+					});
+				});
+			});
+		} else {
 			// Query nav items
-			this.nav_items = document.querySelectorAll(elem);
+			this.nav_items = document.querySelectorAll(this.nav_items_selectors);
 
 			// Set collapsible nav items to hidden
 			this.nav_items.forEach(nav_item => {
@@ -53,6 +80,6 @@ export default class wsu_bt_aria_expanded {
 					}
 				});
 			});
-		});
+		}
 	}
 }
