@@ -1,5 +1,5 @@
-import wsu_bt_aria_expanded from '../../wsu-build-tools/js/aria-expanded/wsu-bt-aria-expanded';
-import { Menubar } from '../../wsu-build-tools/js/wai-aria/MenubarLinks';
+import wsu_bt_aria_expanded from './aria-expanded/wsu-bt-aria-expanded';
+import { Menubar } from './keyboard-nav-accessibility/MenubarLinks';
 
 export default class wsu_bt_priority_nav {
 	constructor(params) {
@@ -111,7 +111,7 @@ export default class wsu_bt_priority_nav {
 	// Initiate collapsable aria-expanded items
 	initiateAriaExpanded() {
 		var expanded_aria_items = new wsu_bt_aria_expanded({
-			nav_item_selector: '.' + this.params['priority_nav_list_item_link_class_name']
+			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name']
 		});
 		expanded_aria_items.init();
 	}
