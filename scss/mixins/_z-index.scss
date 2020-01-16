@@ -4,16 +4,17 @@
 // Example: z-index: z('site-header');
 //
 $z-indexes: (
-	"outdated-browser",
-	"modal",
-	"site-header",
-	"page-wrapper",
-	"site-footer"
+	notice: 9000,
+	modal: 8000,
+	dropdown: 7000,
+	header: 6000,
+	content: 5000,
+	footer: 4000
 );
 
 @function z($name) {
-	@if index($z-indexes, $name) {
-		@return (length($z-indexes) - index($z-indexes, $name)) + 1;
+	@if map-has-key($z-indexes, $name) {
+		@return map-get($z-indexes, $name);
 	} @else {
 		@warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
 		@return null;
