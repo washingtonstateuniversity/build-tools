@@ -6,7 +6,7 @@
 	&::after {
 		position: absolute;
 		z-index: -1;
-		z-index: z('site-header');
+		z-index: z('header');
 		top: calc(#{$top-percentage} - #{$height});
 		left: 50%;
 
@@ -76,27 +76,33 @@
 /* Fade in down
 ======================= */
 @mixin fade-in-down($entry: '', $delay: 0) {
-	opacity: 0;
-	transition: opacity timing(), margin-top timing();
-	transition-delay: $delay;
 	margin-top: 0;
 
+	transition: opacity timing(), margin-top timing();
+	transition-delay: $delay;
+
+	opacity: 0;
+
 	@if $entry == 'end' {
-		opacity: 1;
 		margin-top: 20px;
+
+		opacity: 1;
 	}
 }
 
 /* Fade in right
 ======================= */
 @mixin fade-in-right($entry: '', $delay: 0) {
-	opacity: 0;
-	transition: opacity timing(), margin-left timing();
-	transition-delay: $delay;
 	margin-left: -20px;
 
+	transition: opacity timing(), margin-left timing();
+	transition-delay: $delay;
+
+	opacity: 0;
+
 	@if $entry == 'end' {
-		opacity: 1;
 		margin-left: 0;
+
+		opacity: 1;
 	}
 }
