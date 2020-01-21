@@ -137,7 +137,7 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel.classList.remove('wsu-s-nav-vertical__wrapper--open');
 
 		/* Emit close event */
-		document.emitter.emit('close');
+		document.emitter.emit('wsu-vertical-nav--close');
 	}
 
 	toggle(e) {
