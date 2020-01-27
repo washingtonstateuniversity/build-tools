@@ -209,10 +209,24 @@ export default class wsu_bt_vertical_nav {
 		 *
 		 */
 		const _this = this;
+
 		window.addEventListener('click', function (e) {
 			if (e.target.className == "wsu-s-nav-vertical__wrapper wsu-s-nav-vertical__wrapper--open") {
 				_this.closePanel();
 			}
 		});
+
+
+		/**
+		 *
+		 * Display global header when panel is opened if it exists
+		 *
+		 */
+		const wsu_global_header = document.querySelector('.wsu-g-header__wrapper');
+
+		if (typeof wsu_global_header != "undefined" && wsu_global_header != null) {
+			document.body.classList.remove('wsu-g-header--is-hidden');
+		}
+
 	}
 }
