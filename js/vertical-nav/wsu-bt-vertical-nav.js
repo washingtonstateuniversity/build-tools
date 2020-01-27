@@ -8,7 +8,8 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel_control_selector = '';
 		this.nav_panel_selector = '';
 		this.nav_list_container_selector = '';
-		this.tree_mode = false; // @TODO: needs to do something
+		this.body = document.body;
+		this.tree_mode = false; // TODO needs to do something
 		document.emitter = mitt();
 
 		/**
@@ -80,19 +81,19 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel_control.addEventListener('click', this.togglePanel.bind(this));
 
 		/* Toggle Nav Items */
-		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // @TODO: Abstract selector as parameter
+		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // TODO: Abstract selector as parameter
 
 		/* On panel open events */
 		document.emitter.on('wsu-vertical-nav--after-open', this.panelOpened.bind(this));
 	}
 
 	openCurrentTarget(e) {
-		e.preventDefault;
+		e.preventDefault();
 		e.currentTarget.setAttribute('aria-expanded', 'true');
 	}
 
 	openTarget(e) {
-		e.preventDefault;
+		e.preventDefault();
 		e.target.setAttribute('aria-expanded', 'true');
 	}
 
@@ -122,10 +123,19 @@ export default class wsu_bt_vertical_nav {
 		setTimeout(() => {
 			document.emitter.emit('wsu-vertical-nav--after-open');
 		}, openAnimationTime);
+
+
+		/**
+		 *
+		 * Add body class
+		 *
+		 */
+		this.body.classList.add('wsu-s-nav-vertical__nav--is-open');
+
 	}
 
 	close(e) {
-		e.preventDefault;
+		e.preventDefault();
 		e.target.setAttribute('aria-expanded', 'false');
 	}
 
@@ -138,6 +148,13 @@ export default class wsu_bt_vertical_nav {
 
 		/* Emit close event */
 		document.emitter.emit('wsu-vertical-nav--close');
+
+		/**
+		 *
+		 * Remove body class
+		 *
+		 */
+		this.body.classList.remove('wsu-s-nav-vertical__nav--is-open');
 	}
 
 	toggle(e) {
@@ -150,7 +167,9 @@ export default class wsu_bt_vertical_nav {
 		}
 	}
 
-	togglePanel() {
+	togglePanel(e) {
+		e.preventDefault();
+
 		if (this.nav_panel_control.getAttribute('aria-expanded') == 'true') {
 			this.closePanel();
 		} else {

@@ -25,7 +25,7 @@
 		width: $icon-size;
 		height: $icon-size;
 
-		transition: 500ms ease width;
+		transition: width timing(1000, standard), height timing(1000, standard);
 		transform: translate(-50%, -50%);
 	}
 }
@@ -40,22 +40,26 @@
 	content: $content;
 }
 
-/* Is visually hidden 
+/* Is visually hidden
 ======================= */
 @mixin is-visually-hidden {
 	position: absolute !important;
-	clip: rect(1px, 1px, 1px, 1px);
-	padding:0 !important;
-	border:0 !important;
-	height: 1px !important;
-	width: 1px !important;
+
 	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+
+	border: 0 !important;
 }
 
 /* Is vertically centered
 ======================= */
 @mixin is-vertically-centered {
 	top: 50%;
+
 	transform: translateY(-50%);
 }
 
@@ -63,5 +67,6 @@
 ======================= */
 @mixin is-horizontally-centered {
 	left: 50%;
+
 	transform: translateX(-50%);
 }
