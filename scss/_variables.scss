@@ -15,10 +15,11 @@ $modularscale: (
 
 /* Breakpoints
 ======================= */
-$wsu-bt-breakpoint--xs: 560px;
+$wsu-bt-breakpoint--xsmall: 576px;
 $wsu-bt-breakpoint--small: 768px;
-$wsu-bt-breakpoint--medium: 1024px;
-$wsu-bt-breakpoint--large: 1440px;
+$wsu-bt-breakpoint--medium: 992px;
+$wsu-bt-breakpoint--large: 1200px;
+$wsu-bt-breakpoint--xlarge: 1920px;
 
 /* Color Variables for Mixin
 ======================= */

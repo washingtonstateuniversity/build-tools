@@ -4,10 +4,11 @@
 // Example: @include mq('small') { color: red; }
 //
 $breakpoints: (
-	"xsmall":  $wsu-bt-breakpoint--xs,
-	"small":  $wsu-bt-breakpoint--small,
-	"medium": $wsu-bt-breakpoint--medium,
-	"large":  $wsu-bt-breakpoint--large,
+	"xsmall":  $wsu-bt-breakpoint--xsmall,
+	"small":   $wsu-bt-breakpoint--small,
+	"medium":  $wsu-bt-breakpoint--medium,
+	"large":   $wsu-bt-breakpoint--large,
+	"xlarge":  $wsu-bt-breakpoint--xlarge,
 );
 
 @mixin mq($width, $type: min) {
