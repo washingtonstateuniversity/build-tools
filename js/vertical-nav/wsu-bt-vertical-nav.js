@@ -85,6 +85,10 @@ export default class wsu_bt_vertical_nav {
 
 		/* On panel open events */
 		document.emitter.on('wsu-vertical-nav--after-open', this.panelOpened.bind(this));
+
+		if ( this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open') ) {
+			this.openPanel();
+		}
 	}
 
 	openCurrentTarget(e) {
