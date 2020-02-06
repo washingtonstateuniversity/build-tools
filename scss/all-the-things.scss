@@ -9,7 +9,7 @@
        (Cc c^CCC CCCCCC)      \/
       (CCC^  CCC CCCCC)
      (CCCCCc CCCC CCCCC)
-       ccCCCCCCCC CCCCC)           
+       ccCCCCCCCC CCCCC)
     (CCc  CCCCCCC CCCC)\\       /|
    (CCCx (CCCCCCCC CCCC)\\     /C|
   (CCCCCc_CCCCCCCC CCCC) \CCccc/CC|
@@ -23,9 +23,10 @@
     WSU Build Tools
 */
 
-@import '~modularscale-sass/stylesheets/modularscale';
-@import "./variables";
-@import "./functions";
-@import "./mixins";
-@import "./typography";
-@import "./utility";
+@import '../node_modules/modularscale-sass/stylesheets/modularscale';
+
+@import './variables';
+@import './functions';
+@import './mixins';
+@import './typography';
+@import './utility';
