@@ -1,0 +1,54 @@
+/* Default button styles
+======================= */
+@mixin button (
+	$display: inline-table,
+	$margin: 0,
+	$padding: $unit-s $unit-xl,
+	$text-transform: uppercase,
+	$color: color(white, base),
+	$border: none,
+	$border-radius: $wsu-bt-base-border-radius-size,
+	$background-color: color(primary, light),
+	$hover--color: color(white, base),
+	$hover--background-color: color(primary, base),
+	) {
+	display: $display;
+
+	margin: $margin;
+	padding: $padding;
+
+	transition: background-color timing();
+	text-decoration: none;
+	text-transform: $text-transform;
+
+	color: $color;
+	border: $border;
+	border-radius: $border-radius;
+	background-color: $background-color;
+
+	@include font-size(12px, 600);
+
+	&:visited {
+		display: $display;
+
+		margin: $margin;
+		padding: $padding;
+
+		transition: background-color timing();
+		text-decoration: none;
+		text-transform: $text-transform;
+
+		color: $color;
+		border: $border;
+		border-radius: $border-radius;
+		background-color: $background-color;
+	}
+
+	&:hover,
+	&:active {
+		cursor: pointer;
+
+		color: $hover--color;
+		background-color: $hover--background-color;
+	}
+}
