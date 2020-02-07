@@ -1,5 +1,6 @@
 import wsu_bt_aria_expanded from './aria-expanded/wsu-bt-aria-expanded';
 import { Menubar } from './keyboard-nav-accessibility/MenubarLinks';
+import mitt from 'mitt';
 
 export default class wsu_bt_priority_nav {
 	constructor(params) {
@@ -9,12 +10,14 @@ export default class wsu_bt_priority_nav {
 		this.params = params;
 		this.screenWidth = null;
 		this.window = window;
+		document.emitter = mitt();
 	}
 
 	// Methods
 	init() {
 		this.update_nav();
 		window.addEventListener('resize', this.update_nav.bind(this)); // TODO: look into if we need to use something like debounce or at the very least set a timeout
+		document.emitter.on('wsu-vertical-nav--open', this.update_nav.bind(this));
 	}
 
 	update_nav() {
