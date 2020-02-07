@@ -37,3 +37,10 @@ h5,
 h6 {
 	transition: font-size timing(cougar, standard);
 }
+
+/* Paragraph Styles
+======================= */
+p {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
