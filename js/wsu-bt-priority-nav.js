@@ -26,7 +26,7 @@ export default class wsu_bt_priority_nav {
 		this.document.fonts.ready.then(() => {
 
 			// If doesn't exist & Nav is greater than screen width, create nav
-			if (this.get_priority_nav == null && this.get_screen_width <= this.get_main_nav_width) {
+			if (this.get_priority_nav == null && this.get_frame_width <= this.get_main_nav_width) {
 				this.create_priority_nav();
 			}
 
@@ -94,7 +94,7 @@ export default class wsu_bt_priority_nav {
 
 	calculateWidths() {
 		this.main_nav_width = this.get_main_nav_width;
-		this.screenWidth = this.get_screen_width;
+		this.screenWidth = this.get_frame_width;
 	}
 
 	moveToPriorityNav(itemToMove) {
@@ -126,8 +126,8 @@ export default class wsu_bt_priority_nav {
 	}
 
 	// Getters
-	get get_screen_width() {
-		const windowInnerWidth = this.window.innerWidth;
+	get get_frame_width() {
+		const windowInnerWidth = document.querySelector('.wsu-s-nav-horizontal__nav-container').offsetWidth;
 		return windowInnerWidth;
 	}
 
