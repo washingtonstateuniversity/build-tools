@@ -5,7 +5,6 @@ import mitt from 'mitt';
 export default class wsu_bt_priority_nav {
 	constructor(params) {
 		this.breakpoints = [];
-		this.document = document;
 		this.main_nav_width = null;
 		this.params = params;
 		this.screenWidth = null;
@@ -17,13 +16,17 @@ export default class wsu_bt_priority_nav {
 	init() {
 		this.update_nav();
 		window.addEventListener('resize', this.update_nav.bind(this)); // TODO: look into if we need to use something like debounce or at the very least set a timeout
-		document.emitter.on('wsu-vertical-nav--open', this.update_nav.bind(this));
+
+		document.addEventListener('DOMContentLoaded', () => {
+			document.emitter.on('wsu-vertical-nav--after-open', this.update_nav.bind(this));
+			document.emitter.on('wsu-vertical-nav--after-close', this.update_nav.bind(this));
+		});
 	}
 
 	update_nav() {
 		// Check if all fonts are loaded
 		// TODO: Fix for ie 11 & edge (needs testing)
-		this.document.fonts.ready.then(() => {
+		document.fonts.ready.then(() => {
 
 			// If doesn't exist & Nav is greater than screen width, create nav
 			if (this.get_priority_nav == null && this.get_frame_width <= this.get_main_nav_width) {
@@ -132,7 +135,7 @@ export default class wsu_bt_priority_nav {
 	}
 
 	get get_main_nav_width() {
-		const mainNavInnerWidth = this.document.querySelector(this.params['main_nav_selector']).offsetWidth;
+		const mainNavInnerWidth = document.querySelector(this.params['main_nav_selector']).offsetWidth;
 		return mainNavInnerWidth;
 	}
 
@@ -142,12 +145,12 @@ export default class wsu_bt_priority_nav {
 	}
 
 	get get_priority_nav() {
-		const priority_nav = this.document.querySelector('.' + this.params['priority_nav_list_item_class_name']);
+		const priority_nav = document.querySelector('.' + this.params['priority_nav_list_item_class_name']);
 		return priority_nav;
 	}
 
 	get get_priority_nav_submenu() {
-		const priority_nav = this.document.querySelector('.' + this.params['priority_nav_list_item_list_class_name']);
+		const priority_nav = document.querySelector('.' + this.params['priority_nav_list_item_list_class_name']);
 		return priority_nav;
 	}
 
