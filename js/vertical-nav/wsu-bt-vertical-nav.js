@@ -86,7 +86,7 @@ export default class wsu_bt_vertical_nav {
 		/* On panel open events */
 		document.emitter.on('wsu-vertical-nav--after-open', this.panelOpened.bind(this));
 
-		if ( this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open') ) {
+		if (this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open')) {
 			this.openPanel();
 		}
 	}
@@ -115,6 +115,8 @@ export default class wsu_bt_vertical_nav {
 		 *
 		 */
 		document.emitter.emit('wsu-vertical-nav--open');
+		console.log('Event emitted: wsu-vertical-nav--open');
+
 
 		/**
 		 *
@@ -126,6 +128,7 @@ export default class wsu_bt_vertical_nav {
 
 		setTimeout(() => {
 			document.emitter.emit('wsu-vertical-nav--after-open');
+			console.log('Event emitted: wsu-vertical-nav--after-open');
 		}, openAnimationTime);
 
 
@@ -152,6 +155,21 @@ export default class wsu_bt_vertical_nav {
 
 		/* Emit close event */
 		document.emitter.emit('wsu-vertical-nav--close');
+		console.log('Event emitted: wsu-vertical-nav--close');
+
+
+		/**
+		 *
+		 * Event after close completes
+		 * wsu-vertical-nav--after-close
+		 *
+		 */
+		const closeAnimationTime = 600; // in ms the time it takes for the menu to finish opening
+
+		setTimeout(() => {
+			document.emitter.emit('wsu-vertical-nav--after-close');
+			console.log('Event emitted: wsu-vertical-nav--after-close');
+		}, closeAnimationTime);
 
 		/**
 		 *
