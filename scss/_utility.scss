@@ -15,4 +15,18 @@
 
 		clip-path: inset(50%);
 	}
+
+	&-spacer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		height: 200px;
+	}
+
+	&-title {
+		font-family: monospace;
+
+		text-align: center;
+	}
 }
