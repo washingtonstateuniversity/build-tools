@@ -18,7 +18,7 @@ $modularscale: (
 $wsu-bt-breakpoint--xsmall: 576px;
 $wsu-bt-breakpoint--small: 768px;
 $wsu-bt-breakpoint--medium: 992px;
-$wsu-bt-breakpoint--large: 1350px;
+$wsu-bt-breakpoint--large: 1360px;
 $wsu-bt-breakpoint--xlarge: 1920px;
 
 /* Color Variables for Mixin
@@ -44,6 +44,9 @@ $colors: (
 		90: hsl(0, 0, 10%),
 		100: hsl(0, 0, 3%),
 	),
+	grey_fill: (
+		medium: rgb(64,64,64),
+	),
 	white: (
 		base: #fff,
 	),
@@ -61,6 +64,12 @@ $wsu-bt-link-color--base: #A60F2D;
 $wsu-bt-link-color--active: #CA1237;
 $wsu-bt-link-color--hover: #CA1237;
 $wsu-bt-link-color--visited: #A60F2D;
+
+$wsu-bt-font-xsmall: 0.8rem;
+$wsu-bt-font-small: 0.9rem;
+$wsu-bt-font-medium: 1rem;
+$wsu-bt-font-medium-large: 1.25rem;
+$wsu-bt-font-large: 1.5rem;
 
 /* Sizing Units
 ======================= */
@@ -126,3 +135,9 @@ $ambient-shadow-map: (
   5: 0 9px 15px 0 $ambient-shadow-colour,
   6: 0 11px 15px 0 $ambient-shadow-colour
 );
+
+/* Nav Sizing
+======================= */
+$wsu-bt-nav-vertical-width-full: 260px;
+$wsu-bt-nav-vertical-width-collapse: 61px;
+$wsu-bt-nav-vertical-width-offset: 198px;
