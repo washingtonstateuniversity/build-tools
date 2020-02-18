@@ -84,7 +84,10 @@ export default class wsu_bt_vertical_nav {
 		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // TODO: Abstract selector as parameter
 
 		/* On panel open events */
-		document.emitter.on('wsu-vertical-nav--after-open', this.panelOpened.bind(this));
+		document.emitter.on('wsu-vertical-nav--open', this.panelOpened.bind(this));
+
+		/* On panel close events */
+		document.emitter.on('wsu-vertical-nav--close', this.panelClosed.bind(this));
 
 		if (this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open')) {
 			this.openPanel();
@@ -124,7 +127,7 @@ export default class wsu_bt_vertical_nav {
 		 * wsu-vertical-nav--after-open
 		 *
 		 */
-		const openAnimationTime = 600; // in ms the time it takes for the menu to finish opening
+		const openAnimationTime = 300; // in ms the time it takes for the menu to finish opening
 
 		setTimeout(() => {
 			document.emitter.emit('wsu-vertical-nav--after-open');
@@ -202,8 +205,8 @@ export default class wsu_bt_vertical_nav {
 	panelOpened() {
 		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
 
-		closeButton.style.opacity = 1;
-		closeButton.style.marginTop = 0;
+		closeButton.classList.remove('fadeOutUp');
+		closeButton.classList.add('animated', 'fadeInDown', 'faster');
 
 		/**
 		 *
@@ -215,12 +218,13 @@ export default class wsu_bt_vertical_nav {
 
 		for (var i = 0; i < navItemsCount; i++) {
 			(function (i) {
-				const duration = 250;
-				let increment = duration + (duration * i);
+				// Duration between each item being animated
+				const duration = 30;
+				let increment = duration + (duration * (i * (i * 0.2)));
 
 				setTimeout(function () {
-					navItems[i].style.opacity = 1;
-					navItems[i].style.marginLeft = '0';
+					navItems[i].classList.remove('fadeOutLeft');
+					navItems[i].classList.add('animated', 'fadeInLeft');
 				}, increment);
 			})(i);
 		};
@@ -250,5 +254,34 @@ export default class wsu_bt_vertical_nav {
 			document.body.classList.remove('wsu-g-header--is-hidden');
 		}
 
+	}
+
+	panelClosed() {
+		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
+
+		closeButton.classList.remove('fadeInDown');
+		closeButton.classList.add('fadeOutUp');
+
+		/**
+		 *
+		 * Animate menu items in on vert nav open using emitters
+		 *
+		 */
+		const navItems = document.querySelectorAll('.wsu-s-nav-vertical__nav-list-container > li');
+		const navItemsCount = navItems.length;
+
+		for (var i = 0; i < navItemsCount; i++) {
+
+			(function (i) {
+				// Duration between each item being animated
+				const duration = 50;
+				let increment = duration + (duration * (i * (i * .2)));
+
+				setTimeout(function () {
+					navItems[i].classList.remove('fadeInLeft');
+					navItems[i].classList.add('fadeOutLeft');
+				}, increment);
+			})(i);
+		};
 	}
 }
