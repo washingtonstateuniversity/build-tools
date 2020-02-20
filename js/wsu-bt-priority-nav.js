@@ -1,6 +1,5 @@
 import wsu_bt_aria_expanded from './aria-expanded/wsu-bt-aria-expanded';
 import { Menubar } from './keyboard-nav-accessibility/MenubarLinks';
-import mitt from 'mitt';
 
 export default class wsu_bt_priority_nav {
 	constructor(params) {
@@ -9,7 +8,6 @@ export default class wsu_bt_priority_nav {
 		this.params = params;
 		this.screenWidth = null;
 		this.window = window;
-		document.emitter = mitt();
 	}
 
 	// Methods
@@ -17,6 +15,7 @@ export default class wsu_bt_priority_nav {
 		this.update_nav();
 		window.addEventListener('resize', this.update_nav.bind(this)); // TODO: look into if we need to use something like debounce or at the very least set a timeout
 
+		// Add event listeners to adjust nav size when the vertical nav is opened or closed
 		document.addEventListener('DOMContentLoaded', () => {
 			document.emitter.on('wsu-vertical-nav--after-open', this.update_nav.bind(this));
 			document.emitter.on('wsu-vertical-nav--after-close', this.update_nav.bind(this));
@@ -117,7 +116,9 @@ export default class wsu_bt_priority_nav {
 	// Initiate collapsable aria-expanded items
 	initiateAriaExpanded() {
 		var expanded_aria_items = new wsu_bt_aria_expanded({
-			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name']
+			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name'],
+			nav_name: 'wsu-s-nav-horizontal',
+			use_animations: false
 		});
 		expanded_aria_items.init();
 	}
