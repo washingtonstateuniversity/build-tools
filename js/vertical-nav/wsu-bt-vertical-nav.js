@@ -1,5 +1,5 @@
 import wsu_bt_keyboard_nav_accessibility from '../keyboard-nav-accessibility/wsu-bt-keyboard-nav-accessibility';
-import mitt from 'mitt'
+import mitt from 'mitt';
 
 export default class wsu_bt_vertical_nav {
 	constructor(params) {
@@ -220,7 +220,9 @@ export default class wsu_bt_vertical_nav {
 			(function (i) {
 				// Duration between each item being animated
 				const duration = 30;
-				let increment = duration + (duration * (i * (i * 0.2)));
+				const curve = 0.25;
+
+				let increment = duration + (duration * (i * (i * curve))); // Bezier
 
 				setTimeout(function () {
 					navItems[i].classList.remove('fadeOutLeft');
