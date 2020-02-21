@@ -1,4 +1,3 @@
-
 export default class wsu_bt_aria_expanded {
 	constructor(params) {
 		this.params = params;
@@ -54,12 +53,21 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	init() {
+		// Initial load
 		this.update_items();
-		window.addEventListener('resize', this.update_items.bind(this)); // TODO: look into if we need to use something like debounce or at the very least set a timeout
+
+		// On resize
+		window.addEventListener('resize', this.update_items.bind(this));
+
+		// On click
+		window.addEventListener('click', this.check_for_close.bind(this, event));
 	}
 
+	/**
+	 * Updates items as needed
+	 * @function
+	 */
 	update_items() {
-		// Update items if is an array of items
 		if (Array.isArray(this.nav_items_selectors)) {
 			this.nav_items_selectors.forEach(element => {
 				this.control_attribute_state(element);
@@ -69,19 +77,33 @@ export default class wsu_bt_aria_expanded {
 		}
 	}
 
+	/**
+	 * Controls wether items are expanded true or false
+	 * @param {object} element
+	 */
 	control_attribute_state(element) {
-		// Query nav items
+
+		/*----------  Initial onLoad state  ----------*/
 		this.nav_items = document.querySelectorAll(element);
 
 		// Set collapsible nav items to hidden
 		this.nav_items.forEach(nav_item => {
 			nav_item.setAttribute('aria-expanded', 'false');
+
+			if (this.use_animations) {
+				const nav_items = Array.from(nav_item.nextElementSibling.children);
+
+				nav_items.forEach(element => {
+					element.classList.add('animated');
+				});
+			}
 		});
 
-		// Set collapsible nav items to toggle on click
+		/*----------  onClick behaviors  ----------*/
+		const _this = this;
 		this.nav_items.forEach(nav_item => {
-			const _this = this;
 
+			// Set collapsible nav items to toggle on click
 			nav_item.addEventListener('click', function (e) {
 				e.preventDefault;
 
@@ -103,8 +125,11 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	animate_elements_in(event) {
-		event.currentTarget.nextElementSibling.classList.add('animated', 'fadeInUp');
+		// Container
+		event.currentTarget.nextElementSibling.classList.remove('fadeOutDown');
+		event.currentTarget.nextElementSibling.classList.add('fadeInUp');
 
+		// Children Items
 		const sub_nav_items = event.currentTarget.nextElementSibling.children;
 		const sub_nav_items_count = sub_nav_items.length;
 
@@ -118,13 +143,106 @@ export default class wsu_bt_aria_expanded {
 				let increment = duration + (duration * (i * (i * curve))); // Bezier
 
 				setTimeout(function () {
-					sub_nav_items[i].classList.add('animated', 'fadeInUp');
+					sub_nav_items[i].classList.remove('fadeOutDown');
+					sub_nav_items[i].classList.add('fadeInUp');
 				}, increment);
 			})(i);
 		}
 	}
 
 	animate_elements_out(event) {
+		// This checks is to ensure the click is inside of the component
+		if (event.type !== 'click') {
+			const element = event;
+			// Container
+			this.animate_item(element.nextElementSibling);
 
+			// Children Items
+			this.animate_items(element.nextElementSibling.children);
+		} else {
+			// Container
+			this.animate_item(event.currentTarget.nextElementSibling);
+
+			// Children Items
+			this.animate_items(event.currentTarget.nextElementSibling.children);
+		}
+	}
+
+	animate_item(elements_to_animate, add = 'fadeOutDown', remove = 'fadeInUp', ) {
+		elements_to_animate.classList.remove(remove);
+		elements_to_animate.classList.add(add);
+	}
+
+	animate_items(elements_to_animate, add = 'fadeOutDown', remove = 'fadeInUp', ) {
+		const sub_nav_items = elements_to_animate;
+		const sub_nav_items_count = sub_nav_items.length;
+
+		for (var i = 0; i < sub_nav_items_count; i++) {
+			(function (i) {
+
+				const duration = 30; // Duration between each item being animated
+				const curve = 0.25; // Increment intensity
+
+				// let increment = duration + (duration * (i * curve)); // Linear
+				let increment = duration + (duration * (i * (i * curve))); // Bezier
+
+				setTimeout(function () {
+					sub_nav_items[i].classList.remove(remove);
+					sub_nav_items[i].classList.add(add);
+				}, increment);
+			})(i);
+		}
+	}
+
+	open_dropdowns() {
+		// Set collapsible nav items to hidden
+		this.get_nav_items.forEach(nav_item => {
+			nav_item.setAttribute('aria-expanded', 'true');
+
+			if (this.use_animations) {
+				this.animate_elements_in();
+			}
+		});
+	}
+
+	/**
+	 *
+	 * Close dropdowns goes through all open nav items and closes them. If animations are enabled, will fade them out.
+	 * @function
+	 *
+	 */
+	close_dropdowns() {
+		// Set collapsible nav items to hidden
+		this.get_nav_items.forEach(nav_item => {
+			nav_item.setAttribute('aria-expanded', 'false');
+
+			if (this.use_animations) {
+				this.animate_elements_out(nav_item);
+			}
+		});
+	}
+
+	/**
+	 *
+	 * Checks if the nav items should be closed
+	 * @function
+	 *
+	 */
+	check_for_close() {
+		var nav_wrapper_selector = document.querySelector('.wsu-s-nav-horizontal__wrapper');
+
+		if (!nav_wrapper_selector.contains(event.target)) {
+			this.close_dropdowns(event);
+		}
+	}
+
+	/**
+	 *
+	 * Return all nav_items with children on the page
+	 * @function
+	 *
+	 */
+	get get_nav_items() {
+		return document.querySelectorAll(this.nav_items_selectors);
 	}
 }
