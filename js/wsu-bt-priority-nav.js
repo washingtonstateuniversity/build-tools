@@ -118,7 +118,7 @@ export default class wsu_bt_priority_nav {
 		var expanded_aria_items = new wsu_bt_aria_expanded({
 			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name'],
 			nav_name: 'wsu-s-nav-horizontal',
-			use_animations: false
+			use_animations: true
 		});
 		expanded_aria_items.init();
 	}
