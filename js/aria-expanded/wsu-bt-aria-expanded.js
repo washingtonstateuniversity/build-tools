@@ -53,13 +53,8 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	init() {
-		// Initial load
 		this.update_items();
-
-		// On resize
 		window.addEventListener('resize', this.update_items.bind(this));
-
-		// On click
 		window.addEventListener('click', this.check_for_close.bind(this, event));
 	}
 
@@ -126,6 +121,7 @@ export default class wsu_bt_aria_expanded {
 
 	animate_elements_in(event) {
 		// Container
+		event.currentTarget.nextElementSibling.style.visibility = 'visible';
 		event.currentTarget.nextElementSibling.classList.remove('fadeOutDown');
 		event.currentTarget.nextElementSibling.classList.add('fadeInUp');
 
@@ -151,20 +147,30 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	animate_elements_out(event) {
-		// This checks is to ensure the click is inside of the component
+		/**
+		 * If event is not a click, assume we aren't dealing with something inside the component (aka a close action)
+		 */
 		if (event.type !== 'click') {
-			const element = event;
-			// Container
-			this.animate_item(element.nextElementSibling);
+			const element_to_hide = event.nextElementSibling;
 
-			// Children Items
-			this.animate_items(element.nextElementSibling.children);
+			// Animate container item
+			this.animate_item(element_to_hide);
+
+			// Animate children menus out
+			this.animate_items(element_to_hide.children);
 		} else {
-			// Container
-			this.animate_item(event.currentTarget.nextElementSibling);
+			const element_to_hide = event.currentTarget.nextElementSibling;
 
-			// Children Items
-			this.animate_items(event.currentTarget.nextElementSibling.children);
+			// Animate container item
+			this.animate_item(element_to_hide);
+
+			// Animate children menus out
+			this.animate_items(element_to_hide.children);
+
+			// Remove container from screen after animation finishes
+			setTimeout(function () {
+				element_to_hide.style.visibility = 'hidden';
+			}, 350);
 		}
 	}
 
@@ -220,6 +226,15 @@ export default class wsu_bt_aria_expanded {
 				this.animate_elements_out(nav_item);
 			}
 		});
+
+		// Remove from screen after animation finishes
+		const main_nav_items = this.params['nav_item_selectors'] + '[aria-expanded="false"] + ' + this.params['main_nav_selector'];
+		const main_nav_more_menu_items = this.params['nav_item_selectors'] + '[aria-expanded="false"] + ' + this.params['main_nav_selector'] + '--has-more-items';
+
+		setTimeout(function () {
+			document.querySelectorAll(main_nav_items).forEach(element => element.style.visibility = 'hidden');
+			document.querySelector(main_nav_more_menu_items).style.visibility = 'hidden';
+		}, 350);
 	}
 
 	/**
