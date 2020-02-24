@@ -8,7 +8,6 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel_control_selector = '';
 		this.nav_panel_selector = '';
 		this.nav_list_container_selector = '';
-		this.body = document.body;
 		this.tree_mode = false; // TODO needs to do something
 		document.emitter = mitt();
 
@@ -140,7 +139,7 @@ export default class wsu_bt_vertical_nav {
 		 * Add body class
 		 *
 		 */
-		this.body.classList.add('wsu-s-nav-vertical__nav--is-open');
+		document.body.classList.add('wsu-s-nav-vertical__nav--is-open');
 
 	}
 
@@ -179,7 +178,7 @@ export default class wsu_bt_vertical_nav {
 		 * Remove body class
 		 *
 		 */
-		this.body.classList.remove('wsu-s-nav-vertical__nav--is-open');
+		document.body.classList.remove('wsu-s-nav-vertical__nav--is-open');
 	}
 
 	toggle(e) {
