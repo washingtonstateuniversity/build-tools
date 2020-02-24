@@ -233,7 +233,12 @@ export default class wsu_bt_aria_expanded {
 
 		setTimeout(function () {
 			document.querySelectorAll(main_nav_items).forEach(element => element.style.visibility = 'hidden');
-			document.querySelector(main_nav_more_menu_items).style.visibility = 'hidden';
+
+			const more_menu = document.querySelector(main_nav_more_menu_items);
+
+			if (more_menu) {
+				more_menu.style.visibility = 'hidden';
+			}
 		}, 350);
 	}
 
