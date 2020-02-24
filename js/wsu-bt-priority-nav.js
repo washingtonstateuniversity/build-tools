@@ -100,13 +100,30 @@ export default class wsu_bt_priority_nav {
 	}
 
 	moveToPriorityNav(itemToMove) {
+		this.cleanItemBeforeMove(itemToMove);
 		this.get_priority_nav_submenu.insertAdjacentElement('afterbegin', itemToMove);
 		this.breakpoints.push(this.main_nav_width);
 	}
 
 	moveToMainNav(itemToMove) {
+		this.cleanItemBeforeMove(itemToMove);
 		this.get_main_nav.insertBefore(itemToMove, this.get_main_nav.lastElementChild);
 		this.breakpoints.pop();
+	}
+
+	cleanItemBeforeMove(item_to_clean) {
+		const class_list = item_to_clean.classList;
+		const dirty_classes = [
+			'animated',
+			'fadeOutDown',
+			'fadeInUp'
+		];
+
+		dirty_classes.forEach(dirty_class => {
+			if (Array.from(class_list).includes(dirty_class)) {
+				class_list.remove(dirty_class);
+			}
+		});
 	}
 
 	destroyPriorityNav() {
@@ -118,7 +135,8 @@ export default class wsu_bt_priority_nav {
 		var expanded_aria_items = new wsu_bt_aria_expanded({
 			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name'],
 			nav_name: 'wsu-s-nav-horizontal',
-			use_animations: true
+			use_animations: true,
+			main_nav_selector: this.params['main_nav_selector']
 		});
 		expanded_aria_items.init();
 	}
