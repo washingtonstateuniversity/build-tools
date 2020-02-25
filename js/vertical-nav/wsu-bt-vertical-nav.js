@@ -78,36 +78,36 @@ export default class wsu_bt_vertical_nav {
 		 */
 
 		/* Toggle Panels */
-		this.nav_panel_control.addEventListener('click', this.togglePanel.bind(this));
+		this.nav_panel_control.addEventListener('click', this.toggle_panel.bind(this));
 
 		/* Toggle Nav Items */
 		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // TODO: Abstract selector as parameter
 
 		/* On panel open events */
-		wsu_wds.emitter.on('wsu-vertical-nav--open', this.panelOpened.bind(this));
+		wsu_wds.emitter.on('wsu-vertical-nav--open', this.panel_opened.bind(this));
 
 		/* On panel open events */
 		wsu_wds.emitter.on('wsu-vertical-nav--after-open', this.panel_opened_after.bind(this));
 
 		/* On panel close events */
-		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panelClosed.bind(this));
+		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panel_closed.bind(this));
 
 		if (this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open')) {
-			this.openPanel();
+			this.open_panel();
 		}
 	}
 
-	openCurrentTarget(e) {
+	open_current_target(e) {
 		e.preventDefault();
 		e.currentTarget.setAttribute('aria-expanded', 'true');
 	}
 
-	openTarget(e) {
+	open_target(e) {
 		e.preventDefault();
 		e.target.setAttribute('aria-expanded', 'true');
 	}
 
-	openPanel() {
+	open_panel() {
 		/* Set aria expanded attribute */
 		this.nav_panel_control.setAttribute('aria-expanded', 'true');
 
@@ -156,7 +156,7 @@ export default class wsu_bt_vertical_nav {
 		e.target.setAttribute('aria-expanded', 'false');
 	}
 
-	closePanel() {
+	close_panel() {
 		/* Set aria expanded attribute */
 		this.nav_panel_control.setAttribute('aria-expanded', 'false');
 
@@ -197,25 +197,25 @@ export default class wsu_bt_vertical_nav {
 
 	toggle(e) {
 		if (e.currentTarget.getAttribute('aria-expanded') == 'false') {
-			this.openCurrentTarget(e);
+			this.open_current_target(e);
 		} else if (e.target.getAttribute('aria-expanded') == 'false') {
-			this.openTarget(e);
+			this.open_target(e);
 		} else {
 			this.close(e);
 		}
 	}
 
-	togglePanel(e) {
+	toggle_panel(e) {
 		e.preventDefault();
 
 		if (this.nav_panel_control.getAttribute('aria-expanded') == 'true') {
-			this.closePanel();
+			this.close_panel();
 		} else {
-			this.openPanel();
+			this.open_panel();
 		}
 	}
 
-	panelOpened() {
+	panel_opened() {
 		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
 
 		closeButton.classList.remove('fadeOutUp');
@@ -253,7 +253,7 @@ export default class wsu_bt_vertical_nav {
 
 		window.addEventListener('click', function (e) {
 			if (e.target.className == "wsu-s-nav-vertical__wrapper wsu-s-nav-vertical__wrapper--open") {
-				_this.closePanel();
+				_this.close_panel();
 			}
 		});
 
@@ -311,7 +311,7 @@ export default class wsu_bt_vertical_nav {
 		}
 	}
 
-	panelClosed() {
+	panel_closed() {
 		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
 
 		closeButton.classList.remove('fadeInDown');
