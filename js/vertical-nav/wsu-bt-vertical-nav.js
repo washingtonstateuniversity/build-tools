@@ -86,6 +86,9 @@ export default class wsu_bt_vertical_nav {
 		/* On panel open events */
 		wsu_wds.emitter.on('wsu-vertical-nav--open', this.panelOpened.bind(this));
 
+		/* On panel open events */
+		wsu_wds.emitter.on('wsu-vertical-nav--after-open', this.panel_opened_after.bind(this));
+
 		/* On panel close events */
 		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panelClosed.bind(this));
 
@@ -265,6 +268,28 @@ export default class wsu_bt_vertical_nav {
 			document.body.classList.remove('wsu-g-header--is-hidden');
 		}
 
+		/**
+		 *
+		 * Resize horizontal nav if it exists
+		 *
+		 */
+		const wsu_horz_nav = document.querySelectorAll('.wsu-s-nav-horizontal__wrapper');
+
+		if (wsu_horz_nav.length !== 0) {
+			// Resize horizontal navigation
+			wsu_wds.horizontal_nav.update_nav();
+
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper exists');
+			}
+		} else {
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper does not exist');
+			}
+		}
+	}
+
+	panel_opened_after() {
 		/**
 		 *
 		 * Resize horizontal nav if it exists
