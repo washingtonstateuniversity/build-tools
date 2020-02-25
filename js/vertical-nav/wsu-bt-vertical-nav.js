@@ -76,20 +76,23 @@ export default class wsu_bt_vertical_nav {
 		 *
 		 */
 
-		/* Toggle Panels */
+		// Toggle Panels
 		this.nav_panel_control.addEventListener('click', this.toggle_panel.bind(this));
 
-		/* Toggle Nav Items */
+		// Toggle Nav Items
 		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // TODO: Abstract selector as parameter
 
-		/* On panel open events */
-		wsu_wds.emitter.on('wsu-vertical-nav--open', this.panel_opened.bind(this));
+		// On panel open
+		wsu_wds.emitter.on('wsu-vertical-nav--open', this.panel_open.bind(this));
 
-		/* On panel open events */
-		wsu_wds.emitter.on('wsu-vertical-nav--after-open', this.panel_opened_after.bind(this));
+		// After panel open
+		wsu_wds.emitter.on('wsu-vertical-nav--after-open', this.panel_after_open.bind(this));
 
-		/* On panel close events */
-		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panel_closed.bind(this));
+		// On panel close
+		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panel_close.bind(this));
+
+		// After panel close
+		wsu_wds.emitter.on('wsu-vertical-nav--after-close', this.panel_after_close.bind(this));
 
 		/**
 		 *
@@ -216,7 +219,7 @@ export default class wsu_bt_vertical_nav {
 		}
 	}
 
-	panel_opened() {
+	panel_open() {
 		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
 
 		closeButton.classList.remove('fadeOutUp');
@@ -290,7 +293,7 @@ export default class wsu_bt_vertical_nav {
 		}
 	}
 
-	panel_opened_after() {
+	panel_after_open() {
 		/**
 		 *
 		 * Resize horizontal nav if it exists
@@ -312,7 +315,7 @@ export default class wsu_bt_vertical_nav {
 		}
 	}
 
-	panel_closed() {
+	panel_close() {
 		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
 
 		closeButton.classList.remove('fadeInDown');
@@ -339,5 +342,27 @@ export default class wsu_bt_vertical_nav {
 				}, increment);
 			})(i);
 		};
+	}
+
+	panel_after_close() {
+		/**
+		 *
+		 * Resize horizontal nav if it exists
+		 *
+		 */
+		const wsu_horz_nav = document.querySelectorAll('.wsu-s-nav-horizontal__wrapper');
+
+		if (wsu_horz_nav.length !== 0) {
+			// Resize horizontal navigation
+			wsu_wds.horizontal_nav.update_nav();
+
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper exists');
+			}
+		} else {
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper does not exist');
+			}
+		}
 	}
 }
