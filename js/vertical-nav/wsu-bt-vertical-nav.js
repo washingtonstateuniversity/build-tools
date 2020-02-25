@@ -11,7 +11,6 @@ export default class wsu_bt_vertical_nav {
 		this.tree_mode = params.tree_mode ? true : false; // TODO needs to do something
 		this.show_logs = params.show_logs ? true : false;
 
-
 		/**
 		 *
 		 * Assign values to variables
@@ -92,6 +91,11 @@ export default class wsu_bt_vertical_nav {
 		/* On panel close events */
 		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panel_closed.bind(this));
 
+		/**
+		 *
+		 * Set default state as open
+		 *
+		 */
 		if (this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open')) {
 			this.open_panel();
 		}
@@ -141,14 +145,12 @@ export default class wsu_bt_vertical_nav {
 			}
 		}, openAnimationTime);
 
-
 		/**
 		 *
 		 * Add body class
 		 *
 		 */
 		document.body.classList.add('wsu-s-nav-vertical__nav--is-open');
-
 	}
 
 	close(e) {
@@ -169,7 +171,6 @@ export default class wsu_bt_vertical_nav {
 		if (this.show_logs) {
 			console.log('Event emitted: wsu-vertical-nav--close');
 		}
-
 
 		/**
 		 *
