@@ -1,5 +1,5 @@
+import wsu_wds from '../../../wsu-build-tools/js/wsu-bt-wds';
 import wsu_bt_keyboard_nav_accessibility from '../keyboard-nav-accessibility/wsu-bt-keyboard-nav-accessibility';
-import mitt from 'mitt';
 
 export default class wsu_bt_vertical_nav {
 	constructor(params) {
@@ -8,8 +8,9 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel_control_selector = '';
 		this.nav_panel_selector = '';
 		this.nav_list_container_selector = '';
-		this.tree_mode = false; // TODO needs to do something
-		document.emitter = mitt();
+		this.tree_mode = params.tree_mode ? true : false; // TODO needs to do something
+		this.show_logs = params.show_logs ? true : false;
+
 
 		/**
 		 *
@@ -83,10 +84,10 @@ export default class wsu_bt_vertical_nav {
 		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // TODO: Abstract selector as parameter
 
 		/* On panel open events */
-		document.emitter.on('wsu-vertical-nav--open', this.panelOpened.bind(this));
+		wsu_wds.emitter.on('wsu-vertical-nav--open', this.panelOpened.bind(this));
 
 		/* On panel close events */
-		document.emitter.on('wsu-vertical-nav--close', this.panelClosed.bind(this));
+		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panelClosed.bind(this));
 
 		if (this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open')) {
 			this.openPanel();
@@ -116,9 +117,10 @@ export default class wsu_bt_vertical_nav {
 		 * wsu-vertical-nav--open
 		 *
 		 */
-		document.emitter.emit('wsu-vertical-nav--open');
-		console.log('Event emitted: wsu-vertical-nav--open');
-
+		wsu_wds.emitter.emit('wsu-vertical-nav--open');
+		if (this.show_logs) {
+			console.log('Event emitted: wsu-vertical-nav--open');
+		}
 
 		/**
 		 *
@@ -129,8 +131,11 @@ export default class wsu_bt_vertical_nav {
 		const openAnimationTime = 300; // in ms the time it takes for the menu to finish opening
 
 		setTimeout(() => {
-			document.emitter.emit('wsu-vertical-nav--after-open');
-			console.log('Event emitted: wsu-vertical-nav--after-open');
+			wsu_wds.emitter.emit('wsu-vertical-nav--after-open');
+
+			if (this.show_logs) {
+				console.log('Event emitted: wsu-vertical-nav--after-open');
+			}
 		}, openAnimationTime);
 
 
@@ -156,8 +161,11 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel.classList.remove('wsu-s-nav-vertical__wrapper--open');
 
 		/* Emit close event */
-		document.emitter.emit('wsu-vertical-nav--close');
-		console.log('Event emitted: wsu-vertical-nav--close');
+		wsu_wds.emitter.emit('wsu-vertical-nav--close');
+
+		if (this.show_logs) {
+			console.log('Event emitted: wsu-vertical-nav--close');
+		}
 
 
 		/**
@@ -169,8 +177,11 @@ export default class wsu_bt_vertical_nav {
 		const closeAnimationTime = 600; // in ms the time it takes for the menu to finish opening
 
 		setTimeout(() => {
-			document.emitter.emit('wsu-vertical-nav--after-close');
-			console.log('Event emitted: wsu-vertical-nav--after-close');
+			wsu_wds.emitter.emit('wsu-vertical-nav--after-close');
+
+			if (this.show_logs) {
+				console.log('Event emitted: wsu-vertical-nav--after-close');
+			}
 		}, closeAnimationTime);
 
 		/**
@@ -243,7 +254,6 @@ export default class wsu_bt_vertical_nav {
 			}
 		});
 
-
 		/**
 		 *
 		 * Display global header when panel is opened if it exists
@@ -255,6 +265,25 @@ export default class wsu_bt_vertical_nav {
 			document.body.classList.remove('wsu-g-header--is-hidden');
 		}
 
+		/**
+		 *
+		 * Resize horizontal nav if it exists
+		 *
+		 */
+		const wsu_horz_nav = document.querySelectorAll('.wsu-s-nav-horizontal__wrapper');
+
+		if (wsu_horz_nav.length !== 0) {
+			// Resize horizontal navigation
+			wsu_wds.horizontal_nav.update_nav();
+
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper exists');
+			}
+		} else {
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper does not exist');
+			}
+		}
 	}
 
 	panelClosed() {
