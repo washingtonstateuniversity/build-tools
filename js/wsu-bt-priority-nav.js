@@ -14,12 +14,6 @@ export default class wsu_bt_priority_nav {
 	init() {
 		this.update_nav();
 		window.addEventListener('resize', this.update_nav.bind(this)); // TODO: look into if we need to use something like debounce or at the very least set a timeout
-
-		// Add event listeners to adjust nav size when the vertical nav is opened or closed
-		document.addEventListener('DOMContentLoaded', () => {
-			document.emitter.on('wsu-vertical-nav--after-open', this.update_nav.bind(this));
-			document.emitter.on('wsu-vertical-nav--after-close', this.update_nav.bind(this));
-		});
 	}
 
 	update_nav() {
