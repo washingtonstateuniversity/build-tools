@@ -2,6 +2,7 @@ export default class wsu_bt_aria_expanded {
 	constructor(params) {
 		this.params = params;
 		this.nav_items = null;
+		this.show_logs = params.show_logs ? true : false;
 
 		/**
 		 *
@@ -53,80 +54,150 @@ export default class wsu_bt_aria_expanded {
 	}
 
 	init() {
-		this.update_items();
-		window.addEventListener('resize', this.update_items.bind(this));
-		window.addEventListener('click', this.check_for_close.bind(this, event));
+		this.process_params();
+		// window.addEventListener('resize', this.update_items.bind(this));
+		// window.addEventListener('click', this.check_for_close.bind(this, event));
+		this.init_mutation_observers();
 	}
 
 	/**
-	 * Updates items as needed
+	 * Process the input params to support array or string values
 	 * @function
 	 */
-	update_items() {
+	process_params() {
 		if (Array.isArray(this.nav_items_selectors)) {
 			this.nav_items_selectors.forEach(element => {
-				this.control_attribute_state(element);
+				this.set_init_state(element);
 			});
 		} else {
-			this.control_attribute_state(this.nav_items_selectors);
+			this.set_init_state(this.nav_items_selectors);
 		}
 	}
 
 	/**
-	 * Controls wether items are expanded true or false
-	 * @param {object} element
+	 * Set initial state for aria-expanded items
+	 * @param {object} elements
 	 */
-	control_attribute_state(element) {
+	set_init_state(elements) {
+		const nav_items = document.querySelectorAll(elements);
+		const _this = this;
 
-		/*----------  Initial onLoad state  ----------*/
-		this.nav_items = document.querySelectorAll(element);
-
-		// Set collapsible nav items to hidden
-		this.nav_items.forEach(nav_item => {
+		nav_items.forEach(nav_item => {
+			// Initial on page load state
 			nav_item.setAttribute('aria-expanded', 'false');
 
-			if (this.use_animations) {
-				const nav_items = Array.from(nav_item.nextElementSibling.children);
+			// Create event listeners for each nav item
+			nav_item.addEventListener('click', function (e) {
+				e.preventDefault();
+				_this.toggle_aria_expanded_state(e.target);
+			});
 
-				nav_items.forEach(element => {
-					element.classList.add('animated');
+			// If animations are enabled, add the default animated class
+			if (_this.use_animations) {
+				const nav_item_children = Array.from(nav_item.nextElementSibling.children);
+
+				nav_item_children.forEach(nav_item => {
+					nav_item.classList.add('animated');
 				});
 			}
 		});
-
-		/*----------  onClick behaviors  ----------*/
-		const _this = this;
-		this.nav_items.forEach(nav_item => {
-
-			// Set collapsible nav items to toggle on click
-			nav_item.addEventListener('click', function (e) {
-				e.preventDefault;
-
-				if (this.getAttribute('aria-expanded') == 'false') {
-					this.setAttribute('aria-expanded', 'true');
-
-					if (_this.use_animations) {
-						_this.animate_elements_in(e);
-					}
-				} else {
-					this.setAttribute('aria-expanded', 'false');
-
-					if (_this.use_animations) {
-						_this.animate_elements_out(e);
-					}
-				}
-			});
-		});
 	}
 
-	animate_elements_in(event) {
-		// Container
-		event.currentTarget.nextElementSibling.style.visibility = 'visible';
-		event.currentTarget.nextElementSibling.classList.remove('fadeOutDown');
-		event.currentTarget.nextElementSibling.classList.add('fadeInUp');
+	/**
+	 * Toggle the aria-expanded element state
+	 * @param {object} element
+	 */
+	toggle_aria_expanded_state(element) {
+		const isClosed = element.getAttribute('aria-expanded') ? 'false' : 'true';
 
+		if (isClosed) {
+			element.setAttribute('aria-expanded', 'true');
+		} else {
+			element.setAttribute('aria-expanded', 'false');
+		}
+	}
+
+	/**
+	 * Place to init any Mutation Observers
+	 * @function
+	 */
+	init_mutation_observers() {
+		if (this.use_animations) {
+			this.create_mutation(this.params.nav_item_selectors, this.check_element_view_state.bind(this));
+		}
+	}
+
+	/**
+	 * Creates mutation observers to watch state and allows you to tell it what to do on modification
+	 * @param {string} target_query_selector
+	 * @param {method} on_modify_method
+	 */
+	create_mutation(target_query_selector, on_modify_method) {
+		// Select the node that will be observed for mutations
+		const targetNode = document.querySelector(target_query_selector);
+
+		// Options for the observer (which mutations to observe)
+		const config = { attributes: true, childList: false, subtree: false };
+
+		// Global scope
+		const _this = this;
+
+		// Callback function to execute when mutations are observed
+		const callback = function (mutationsList, observer) {
+			// Use traditional 'for loops' for IE 11
+			for (let mutation of mutationsList) {
+				if (mutation.type === 'attributes') {
+					if (_this.show_logs) {
+						console.log('The ' + mutation.attributeName + ' attribute was modified.');
+					}
+					on_modify_method(mutation);
+				}
+			}
+		};
+
+		// Create an observer instance linked to the callback function
+		const observer = new MutationObserver(callback);
+
+		// Start observing the target node for configured mutations
+		observer.observe(targetNode, config);
+	}
+
+	/**
+	 * Checks whether items are expanded true or false
+	 * @param {object} element
+	 */
+	check_element_view_state(element) {
+		const state_is_open = element.target.getAttribute('aria-expanded') ? 'true' : 'false';
+		const nav_item_container = element.target.nextElementSibling;
+		const nav_items = Array.from(element.target.nextElementSibling.children);
+
+		// The motion to the ocean
+		if (state_is_open) {
+			this.animate_element_in(nav_item_container);
+			this.animate_elements_in(nav_items);
+		} else {
+			this.animate_element_out(nav_item_container);
+			this.animate_elements_out(nav_items);
+		}
+	}
+
+	/**
+	 * Animate an individual element in
+	 * @param {object} element
+	 */
+	animate_element_in(element) {
+		element.style.visibility = 'visible';
+		element.classList.remove('fadeOutDown');
+		element.classList.add('fadeInUp');
+	}
+
+	/**
+	 * Animate an array of elements onto the screen incrementally
+	 * @param {object} elements
+	 */
+	animate_elements_in(elements) {
 		// Children Items
-		const sub_nav_items = event.currentTarget.nextElementSibling.children;
+		const sub_nav_items = elements;
 		const sub_nav_items_count = sub_nav_items.length;
 
 		for (var i = 0; i < sub_nav_items_count; i++) {
@@ -144,6 +215,16 @@ export default class wsu_bt_aria_expanded {
 				}, increment);
 			})(i);
 		}
+	}
+
+	animate_element_out(element, timeOutDuration = 350) {
+		element.classList.remove('fadeOutDown');
+		element.classList.add('fadeInUp');
+
+		// Remove container from screen after animation finishes
+		setTimeout(function () {
+			element.style.visibility = 'hidden';
+		}, timeOutDuration);
 	}
 
 	animate_elements_out(event) {
@@ -174,12 +255,12 @@ export default class wsu_bt_aria_expanded {
 		}
 	}
 
-	animate_item(elements_to_animate, add = 'fadeOutDown', remove = 'fadeInUp', ) {
+	animate_item(elements_to_animate, add = 'fadeOutDown', remove = 'fadeInUp') {
 		elements_to_animate.classList.remove(remove);
 		elements_to_animate.classList.add(add);
 	}
 
-	animate_items(elements_to_animate, add = 'fadeOutDown', remove = 'fadeInUp', ) {
+	animate_items(elements_to_animate, add = 'fadeOutDown', remove = 'fadeInUp') {
 		const sub_nav_items = elements_to_animate;
 		const sub_nav_items_count = sub_nav_items.length;
 
