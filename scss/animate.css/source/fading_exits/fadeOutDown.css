@@ -1,0 +1,15 @@
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(0, 10%, 0);
+
+    opacity: 0;
+  }
+}
+
+.fadeOutDown {
+  animation-name: fadeOutDown;
+}

@@ -1,5 +1,5 @@
+import wsu_wds from '../../../wsu-build-tools/js/wsu-bt-wds';
 import wsu_bt_keyboard_nav_accessibility from '../keyboard-nav-accessibility/wsu-bt-keyboard-nav-accessibility';
-import mitt from 'mitt'
 
 export default class wsu_bt_vertical_nav {
 	constructor(params) {
@@ -8,9 +8,8 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel_control_selector = '';
 		this.nav_panel_selector = '';
 		this.nav_list_container_selector = '';
-		this.body = document.body;
-		this.tree_mode = false; // TODO needs to do something
-		document.emitter = mitt();
+		this.tree_mode = params.tree_mode ? true : false; // TODO needs to do something
+		this.show_logs = params.show_logs ? true : false;
 
 		/**
 		 *
@@ -77,31 +76,45 @@ export default class wsu_bt_vertical_nav {
 		 *
 		 */
 
-		/* Toggle Panels */
-		this.nav_panel_control.addEventListener('click', this.togglePanel.bind(this));
+		// Toggle Panels
+		this.nav_panel_control.addEventListener('click', this.toggle_panel.bind(this));
 
-		/* Toggle Nav Items */
+		// Toggle Nav Items
 		document.querySelectorAll('.wsu-s-nav-vertical__nav-item--has-children > .wsu-s-nav-vertical__nav-link').forEach(elem => { elem.addEventListener('click', this.toggle.bind(this)); }); // TODO: Abstract selector as parameter
 
-		/* On panel open events */
-		document.emitter.on('wsu-vertical-nav--after-open', this.panelOpened.bind(this));
+		// On panel open
+		wsu_wds.emitter.on('wsu-vertical-nav--open', this.panel_open.bind(this));
 
+		// After panel open
+		wsu_wds.emitter.on('wsu-vertical-nav--after-open', this.panel_after_open.bind(this));
+
+		// On panel close
+		wsu_wds.emitter.on('wsu-vertical-nav--close', this.panel_close.bind(this));
+
+		// After panel close
+		wsu_wds.emitter.on('wsu-vertical-nav--after-close', this.panel_after_close.bind(this));
+
+		/**
+		 *
+		 * Set default state as open
+		 *
+		 */
 		if (this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open')) {
-			this.openPanel();
+			this.open_panel();
 		}
 	}
 
-	openCurrentTarget(e) {
+	open_current_target(e) {
 		e.preventDefault();
 		e.currentTarget.setAttribute('aria-expanded', 'true');
 	}
 
-	openTarget(e) {
+	open_target(e) {
 		e.preventDefault();
 		e.target.setAttribute('aria-expanded', 'true');
 	}
 
-	openPanel() {
+	open_panel() {
 		/* Set aria expanded attribute */
 		this.nav_panel_control.setAttribute('aria-expanded', 'true');
 
@@ -114,9 +127,10 @@ export default class wsu_bt_vertical_nav {
 		 * wsu-vertical-nav--open
 		 *
 		 */
-		document.emitter.emit('wsu-vertical-nav--open');
-		console.log('Event emitted: wsu-vertical-nav--open');
-
+		wsu_wds.emitter.emit('wsu-vertical-nav--open');
+		if (this.show_logs) {
+			console.log('Event emitted: wsu-vertical-nav--open');
+		}
 
 		/**
 		 *
@@ -124,21 +138,22 @@ export default class wsu_bt_vertical_nav {
 		 * wsu-vertical-nav--after-open
 		 *
 		 */
-		const openAnimationTime = 600; // in ms the time it takes for the menu to finish opening
+		const openAnimationTime = 300; // in ms the time it takes for the menu to finish opening
 
 		setTimeout(() => {
-			document.emitter.emit('wsu-vertical-nav--after-open');
-			console.log('Event emitted: wsu-vertical-nav--after-open');
-		}, openAnimationTime);
+			wsu_wds.emitter.emit('wsu-vertical-nav--after-open');
 
+			if (this.show_logs) {
+				console.log('Event emitted: wsu-vertical-nav--after-open');
+			}
+		}, openAnimationTime);
 
 		/**
 		 *
 		 * Add body class
 		 *
 		 */
-		this.body.classList.add('wsu-s-nav-vertical__nav--is-open');
-
+		document.body.classList.add('wsu-s-nav-vertical__nav--is-open');
 	}
 
 	close(e) {
@@ -146,7 +161,7 @@ export default class wsu_bt_vertical_nav {
 		e.target.setAttribute('aria-expanded', 'false');
 	}
 
-	closePanel() {
+	close_panel() {
 		/* Set aria expanded attribute */
 		this.nav_panel_control.setAttribute('aria-expanded', 'false');
 
@@ -154,9 +169,11 @@ export default class wsu_bt_vertical_nav {
 		this.nav_panel.classList.remove('wsu-s-nav-vertical__wrapper--open');
 
 		/* Emit close event */
-		document.emitter.emit('wsu-vertical-nav--close');
-		console.log('Event emitted: wsu-vertical-nav--close');
+		wsu_wds.emitter.emit('wsu-vertical-nav--close');
 
+		if (this.show_logs) {
+			console.log('Event emitted: wsu-vertical-nav--close');
+		}
 
 		/**
 		 *
@@ -167,8 +184,11 @@ export default class wsu_bt_vertical_nav {
 		const closeAnimationTime = 600; // in ms the time it takes for the menu to finish opening
 
 		setTimeout(() => {
-			document.emitter.emit('wsu-vertical-nav--after-close');
-			console.log('Event emitted: wsu-vertical-nav--after-close');
+			wsu_wds.emitter.emit('wsu-vertical-nav--after-close');
+
+			if (this.show_logs) {
+				console.log('Event emitted: wsu-vertical-nav--after-close');
+			}
 		}, closeAnimationTime);
 
 		/**
@@ -176,34 +196,34 @@ export default class wsu_bt_vertical_nav {
 		 * Remove body class
 		 *
 		 */
-		this.body.classList.remove('wsu-s-nav-vertical__nav--is-open');
+		document.body.classList.remove('wsu-s-nav-vertical__nav--is-open');
 	}
 
 	toggle(e) {
 		if (e.currentTarget.getAttribute('aria-expanded') == 'false') {
-			this.openCurrentTarget(e);
+			this.open_current_target(e);
 		} else if (e.target.getAttribute('aria-expanded') == 'false') {
-			this.openTarget(e);
+			this.open_target(e);
 		} else {
 			this.close(e);
 		}
 	}
 
-	togglePanel(e) {
+	toggle_panel(e) {
 		e.preventDefault();
 
 		if (this.nav_panel_control.getAttribute('aria-expanded') == 'true') {
-			this.closePanel();
+			this.close_panel();
 		} else {
-			this.openPanel();
+			this.open_panel();
 		}
 	}
 
-	panelOpened() {
+	panel_open() {
 		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
 
-		closeButton.style.opacity = 1;
-		closeButton.style.marginTop = 0;
+		closeButton.classList.remove('fadeOutUp');
+		closeButton.classList.add('animated', 'fadeInDown', 'faster');
 
 		/**
 		 *
@@ -215,12 +235,15 @@ export default class wsu_bt_vertical_nav {
 
 		for (var i = 0; i < navItemsCount; i++) {
 			(function (i) {
-				const duration = 250;
-				let increment = duration + (duration * i);
+				// Duration between each item being animated
+				const duration = 30;
+				const curve = 0.25;
+
+				let increment = duration + (duration * (i * (i * curve))); // Bezier
 
 				setTimeout(function () {
-					navItems[i].style.opacity = 1;
-					navItems[i].style.marginLeft = '0';
+					navItems[i].classList.remove('fadeOutLeft');
+					navItems[i].classList.add('animated', 'fadeInLeft');
 				}, increment);
 			})(i);
 		};
@@ -234,10 +257,9 @@ export default class wsu_bt_vertical_nav {
 
 		window.addEventListener('click', function (e) {
 			if (e.target.className == "wsu-s-nav-vertical__wrapper wsu-s-nav-vertical__wrapper--open") {
-				_this.closePanel();
+				_this.close_panel();
 			}
 		});
-
 
 		/**
 		 *
@@ -250,5 +272,97 @@ export default class wsu_bt_vertical_nav {
 			document.body.classList.remove('wsu-g-header--is-hidden');
 		}
 
+		/**
+		 *
+		 * Resize horizontal nav if it exists
+		 *
+		 */
+		const wsu_horz_nav = document.querySelectorAll('.wsu-s-nav-horizontal__wrapper');
+
+		if (wsu_horz_nav.length !== 0) {
+			// Resize horizontal navigation
+			wsu_wds.horizontal_nav.update_nav();
+
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper exists');
+			}
+		} else {
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper does not exist');
+			}
+		}
+	}
+
+	panel_after_open() {
+		/**
+		 *
+		 * Resize horizontal nav if it exists
+		 *
+		 */
+		const wsu_horz_nav = document.querySelectorAll('.wsu-s-nav-horizontal__wrapper');
+
+		if (wsu_horz_nav.length !== 0) {
+			// Resize horizontal navigation
+			wsu_wds.horizontal_nav.update_nav();
+
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper exists');
+			}
+		} else {
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper does not exist');
+			}
+		}
+	}
+
+	panel_close() {
+		const closeButton = document.querySelector('.wsu-s-nav-vertical__nav-container-close-link');
+
+		closeButton.classList.remove('fadeInDown');
+		closeButton.classList.add('fadeOutUp');
+
+		/**
+		 *
+		 * Animate menu items in on vert nav open using emitters
+		 *
+		 */
+		const navItems = document.querySelectorAll('.wsu-s-nav-vertical__nav-list-container > li');
+		const navItemsCount = navItems.length;
+
+		for (var i = 0; i < navItemsCount; i++) {
+
+			(function (i) {
+				// Duration between each item being animated
+				const duration = 50;
+				let increment = duration + (duration * (i * (i * .2)));
+
+				setTimeout(function () {
+					navItems[i].classList.remove('fadeInLeft');
+					navItems[i].classList.add('fadeOutLeft');
+				}, increment);
+			})(i);
+		};
+	}
+
+	panel_after_close() {
+		/**
+		 *
+		 * Resize horizontal nav if it exists
+		 *
+		 */
+		const wsu_horz_nav = document.querySelectorAll('.wsu-s-nav-horizontal__wrapper');
+
+		if (wsu_horz_nav.length !== 0) {
+			// Resize horizontal navigation
+			wsu_wds.horizontal_nav.update_nav();
+
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper exists');
+			}
+		} else {
+			if (this.show_logs) {
+				console.log('.wsu-s-nav-horizontal__wrapper does not exist');
+			}
+		}
 	}
 }

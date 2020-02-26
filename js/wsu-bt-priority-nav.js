@@ -1,6 +1,5 @@
 import wsu_bt_aria_expanded from './aria-expanded/wsu-bt-aria-expanded';
 import { Menubar } from './keyboard-nav-accessibility/MenubarLinks';
-import mitt from 'mitt';
 
 export default class wsu_bt_priority_nav {
 	constructor(params) {
@@ -9,18 +8,12 @@ export default class wsu_bt_priority_nav {
 		this.params = params;
 		this.screenWidth = null;
 		this.window = window;
-		document.emitter = mitt();
 	}
 
 	// Methods
 	init() {
 		this.update_nav();
 		window.addEventListener('resize', this.update_nav.bind(this)); // TODO: look into if we need to use something like debounce or at the very least set a timeout
-
-		document.addEventListener('DOMContentLoaded', () => {
-			document.emitter.on('wsu-vertical-nav--after-open', this.update_nav.bind(this));
-			document.emitter.on('wsu-vertical-nav--after-close', this.update_nav.bind(this));
-		});
 	}
 
 	update_nav() {
@@ -57,7 +50,6 @@ export default class wsu_bt_priority_nav {
 		priority_nav_list_item_link.innerHTML = this.params['more_inner_html'];
 		priority_nav_list_item_link.setAttribute('href', '#');
 		priority_nav_list_item_link.setAttribute('class', this.params['priority_nav_list_item_link_class_name']);
-		priority_nav_list_item_link.setAttribute('id', 'more');
 		priority_nav_list_item_link.setAttribute('role', 'menuitem');
 		priority_nav_list_item_link.setAttribute('tabindex', '-1');
 		priority_nav_list_item_link.setAttribute('aria-expanded', 'true');
@@ -101,13 +93,30 @@ export default class wsu_bt_priority_nav {
 	}
 
 	moveToPriorityNav(itemToMove) {
+		this.cleanItemBeforeMove(itemToMove);
 		this.get_priority_nav_submenu.insertAdjacentElement('afterbegin', itemToMove);
 		this.breakpoints.push(this.main_nav_width);
 	}
 
 	moveToMainNav(itemToMove) {
+		this.cleanItemBeforeMove(itemToMove);
 		this.get_main_nav.insertBefore(itemToMove, this.get_main_nav.lastElementChild);
 		this.breakpoints.pop();
+	}
+
+	cleanItemBeforeMove(item_to_clean) {
+		const class_list = item_to_clean.classList;
+		const dirty_classes = [
+			'animated',
+			'fadeOutDown',
+			'fadeInUp'
+		];
+
+		dirty_classes.forEach(dirty_class => {
+			if (Array.from(class_list).includes(dirty_class)) {
+				class_list.remove(dirty_class);
+			}
+		});
 	}
 
 	destroyPriorityNav() {
@@ -117,7 +126,9 @@ export default class wsu_bt_priority_nav {
 	// Initiate collapsable aria-expanded items
 	initiateAriaExpanded() {
 		var expanded_aria_items = new wsu_bt_aria_expanded({
-			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name']
+			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name'],
+			use_animations: true,
+			show_logs: true
 		});
 		expanded_aria_items.init();
 	}
