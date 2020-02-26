@@ -50,7 +50,6 @@ export default class wsu_bt_priority_nav {
 		priority_nav_list_item_link.innerHTML = this.params['more_inner_html'];
 		priority_nav_list_item_link.setAttribute('href', '#');
 		priority_nav_list_item_link.setAttribute('class', this.params['priority_nav_list_item_link_class_name']);
-		priority_nav_list_item_link.setAttribute('id', 'more');
 		priority_nav_list_item_link.setAttribute('role', 'menuitem');
 		priority_nav_list_item_link.setAttribute('tabindex', '-1');
 		priority_nav_list_item_link.setAttribute('aria-expanded', 'true');
@@ -128,9 +127,8 @@ export default class wsu_bt_priority_nav {
 	initiateAriaExpanded() {
 		var expanded_aria_items = new wsu_bt_aria_expanded({
 			nav_item_selectors: '.' + this.params['priority_nav_list_item_link_class_name'],
-			nav_name: 'wsu-s-nav-horizontal',
 			use_animations: true,
-			main_nav_selector: this.params['main_nav_selector']
+			show_logs: true
 		});
 		expanded_aria_items.init();
 	}
