@@ -1,4 +1,4 @@
-// NOTE: this file assumes that there is no other styles being set with these same values.
+// TODO: this file assumes that there is no other styles being set with these same values.
 //       This may cause issues. Need to figure out a way to package one with baseline styles
 //       and one with all styles being passed through each component class name.
 
@@ -7,6 +7,7 @@
 html {
 	font-family: $wsu-bt-primary-font-family;
 	font-size: $wsu-bt-base-font-size;
+	line-height: 1.6;
 }
 
 /* Link Styles
