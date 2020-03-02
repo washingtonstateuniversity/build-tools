@@ -1,0 +1,12 @@
+/**
+* Function for including all the required properties to use an icon
+*
+* Example:
+* @include wsu-icon("\F127");
+*/
+
+@mixin wsu-icon($content: "\F127") {
+	font-family: "wsu-icons";
+
+	content: $content;
+}
