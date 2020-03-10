@@ -16,6 +16,8 @@
 		clip-path: inset(50%);
 	}
 
+	/* Design System Inline Documentation
+	======================= */
 	&-spacer {
 		display: flex;
 		align-items: center;
@@ -23,6 +25,9 @@
 		justify-content: center;
 
 		height: 200px;
+		margin: $unit 0;
+
+		background: linear-gradient(-195deg, color(white, base), color(grey, 10));
 	}
 
 	&-title {
@@ -31,28 +36,56 @@
 		text-align: center;
 	}
 
+	&-toc {
+		display: block;
+
+		max-width: 400px;
+		margin: $unit-s auto;
+		padding: $unit-xs $unit;
+
+		color: color(white, base);
+		background: linear-gradient(-195deg, color(grey, 50), color(grey, 70));
+
+		@include font-size(14px, 300);
+		@include elevate(2);
+
+		p {
+			margin: 0;
+		}
+
+		a {
+			transition: color timing();
+
+			color: color(white, base);
+
+			&:hover {
+				color: color(grey, 20);
+			}
+		}
+	}
+
 	/** Padding */
 	&-pad {
 		&--none {
-			padding-bottom: 0;
 			padding-top: 0;
-			padding-left: 0;
 			padding-right: 0;
+			padding-bottom: 0;
+			padding-left: 0;
 		}
 
-		// TODO: Turn into function to set from base padding 
+		// TODO: Turn into function to set from base padding
 		&--less {
-			padding-bottom: 0;
 			padding-top: 0;
-			padding-left: 0;
 			padding-right: 0;
+			padding-bottom: 0;
+			padding-left: 0;
 		}
 
 		&--more {
-			padding-bottom: 0;
 			padding-top: 0;
-			padding-left: 0;
 			padding-right: 0;
+			padding-bottom: 0;
+			padding-left: 0;
 		}
 
 		&-bottom--none {
@@ -72,5 +105,20 @@
 		}
 	}
 
+	/* Alignment
+	======================= */
+	&-textalign {
 
+		&--left {
+			text-align: left;
+		}
+
+		&--right {
+			text-align: right;
+		}
+
+		&--center {
+			text-align: center;
+		}
+	}
 }
