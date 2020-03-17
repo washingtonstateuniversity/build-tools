@@ -32,16 +32,23 @@ $colors: (
 		0: hsl(0, 0, 97%),
 		5: hsl(0, 0, 95%),
 		10: hsl(0, 0, 90%),
+		15: hsl(0, 0, 85%),
 		20: hsl(0, 0, 80%),
+		25: hsl(0, 0, 75%),
 		30: hsl(0, 0, 70%),
+		35: hsl(0, 0, 65%),
 		40: hsl(0, 0, 60%),
+		45: hsl(0, 0, 55%),
 		50: hsl(0, 0, 50%),
+		55: hsl(0, 0, 45%),
 		60: hsl(0, 0, 40%),
+		65: hsl(0, 0, 35%),
 		70: hsl(0, 0, 30%),
 		75: hsl(0, 0, 25%),
 		80: hsl(0, 0, 20%),
 		85: hsl(0, 0, 15%),
 		90: hsl(0, 0, 10%),
+		95: hsl(0, 0, 5%),
 		100: hsl(0, 0, 3%),
 	),
 	grey_fill: (
@@ -81,27 +88,6 @@ $unit-l: $wsu-bt-base-unit * 1.25; // 25px
 $unit-xl: $wsu-bt-base-unit * 1.5; // 30px
 $unit-2xl: $wsu-bt-base-unit * 1.75; // 35px
 $unit-3xl: $wsu-bt-base-unit * 2; // 40px
-
-/* Transition Variables
-======================= */
-$transition-timings: (
-	ease: ease,
-	ease-in-out: ease-in-out,
-	standard: cubic-bezier(0, 0, 0.03, 1),
-	easy-does-it: cubic-bezier(0.52, 0.67, 0.3, 1)
-);
-
-$transition-durations: (
-	2000: 2000ms,
-	1500: 1500ms,
-	1000: 1000ms,
-	500: 500ms,
-	300: 300ms,
-	100: 100ms,
-	husky: 500ms,
-	cougar: 300ms,
-	eagle: 100ms
-);
 
 /* Elevation Variables
 ======================= */
