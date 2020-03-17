@@ -21,11 +21,11 @@
 	&-spacer {
 		display: flex;
 		align-items: center;
-		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 
 		height: 200px;
 		margin: $unit 0;
+		padding: 0 $unit-3xl;
 
 		background: linear-gradient(-195deg, color(white, base), color(grey, 10));
 	}
@@ -33,7 +33,8 @@
 	&-title {
 		font-family: monospace;
 
-		text-align: center;
+		display: flex;
+		align-items: center;
 	}
 
 	&-toc {
@@ -62,6 +63,10 @@
 				color: color(grey, 20);
 			}
 		}
+	}
+
+	&-requirements {
+		width: 400px;
 	}
 
 	/** Padding */
