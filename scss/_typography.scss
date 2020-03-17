@@ -8,24 +8,26 @@ html {
 	font-family: $wsu-bt-primary-font-family;
 	font-size: $wsu-bt-base-font-size;
 	line-height: 1.6;
+
+	color: color(grey, 80);
 }
 
 /* Link Styles
 ======================= */
 a {
-	color: $wsu-bt-link-color--base;
+    // text-decoration: underline;
 
-	&:active {
-		color: $wsu-bt-link-color--active;
-	}
+	// &:active {
+	// 	color: $wsu-bt-link-color--active;
+	// }
 
-	&:hover {
-		color: $wsu-bt-link-color--hover;
-	}
+	// &:hover {
+	// 	color: $wsu-bt-link-color--hover;
+	// }
 
-	&:visited {
-		color: $wsu-bt-link-color--visited;
-	}
+	// &:visited {
+	// 	color: $wsu-bt-link-color--base;
+	// }
 }
 
 /* Heading Styles
@@ -44,4 +46,10 @@ h6 {
 p {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Base Image Styles 
+======================= */
+img {
+	width: 100%;
 }
