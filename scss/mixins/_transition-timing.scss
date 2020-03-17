@@ -10,3 +10,25 @@
 
 	@return $transition-duration $transition-timing-function;
 }
+
+/* Transition Timing Variables
+======================= */
+$transition-timings: (
+	ease: ease,
+	ease-in-out: ease-in-out,
+	standard: cubic-bezier(0, 0, 0.03, 1),
+	easy-does-it: cubic-bezier(0.52, 0.67, 0.3, 1)
+);
+
+$transition-durations: (
+	2000: 2000ms,
+	1500: 1500ms,
+	1000: 1000ms,
+	500: 500ms,
+	300: 300ms,
+	100: 100ms,
+	husky: 400ms,
+	cougar: 300ms,
+	gazelle: 200ms,
+	eagle: 100ms
+);
