@@ -36,30 +36,27 @@ $colors: (
 	 * IMO users interpret grey as a subtractive color, so the color values are inverted (grey 0 = nearly white) (grey 100 = basically black). 
 	 */
 	grey: (
-		0: hsl(0, 0, 97%),
-		5: hsl(0, 0, 95%),
-		10: hsl(0, 0, 90%),
-		15: hsl(0, 0, 85%),
-		20: hsl(0, 0, 80%),
-		25: hsl(0, 0, 75%),
-		30: hsl(0, 0, 70%),
-		35: hsl(0, 0, 65%),
-		40: hsl(0, 0, 60%),
-		45: hsl(0, 0, 55%),
-		50: hsl(0, 0, 50%),
-		55: hsl(0, 0, 45%),
-		60: hsl(0, 0, 40%),
-		65: hsl(0, 0, 35%),
-		70: hsl(0, 0, 30%),
-		75: hsl(0, 0, 25%),
-		80: hsl(0, 0, 20%),
-		85: hsl(0, 0, 15%),
-		90: hsl(0, 0, 10%),
-		95: hsl(0, 0, 3%), // 5% and 3% are nearly indistinguishable, so treat them the same and leave the value to maintain consistency
-		100: hsl(0, 0, 3%),
-	),
-	grey_fill: (
-		medium: rgb(64,64,64),
+		0: hsl(0, 0, 97%), // #f7f7f7
+		5: hsl(0, 0, 95%), // #f2f2f2
+		10: hsl(0, 0, 90%), // #e6e6e6
+		15: hsl(0, 0, 85%), // #d9d9d9
+		20: hsl(0, 0, 80%), // #cccccc
+		25: hsl(0, 0, 75%), // #bfbfbf
+		30: hsl(0, 0, 70%), // #b3b3b3
+		35: hsl(0, 0, 65%), // #a6a6a6
+		40: hsl(0, 0, 60%), // #999999
+		45: hsl(0, 0, 55%), // #8c8c8c
+		50: hsl(0, 0, 50%), // #808080
+		55: hsl(0, 0, 45%), // #737373
+		60: hsl(0, 0, 40%), // #666666
+		65: hsl(0, 0, 35%), // #595959
+		70: hsl(0, 0, 30%), // #4d4d4d
+		75: hsl(0, 0, 25%), // #404040
+		80: hsl(0, 0, 20%), // #333333
+		85: hsl(0, 0, 15%), // #262626
+		90: hsl(0, 0, 10%), // #1a1a1a
+		95: hsl(0, 0, 3%), // #080808 - 5% and 3% are nearly indistinguishable, so treat them the same and leave the value to maintain consistency
+		100: hsl(0, 0, 3%), // #080808
 	),
 	white: (
 		base: #fff,
