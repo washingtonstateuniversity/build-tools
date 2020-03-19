@@ -24,10 +24,17 @@ $wsu-bt-breakpoint--xlarge: 1920px;
 /* Color Variables for Mixin
 ======================= */
 $colors: (
+	// Crimson Colors
 	primary: (
 		base: #A60F2D,
 		light: #CA1237,
 	),
+	/* 
+	 * Greys
+	 * Values are defined as a HSL (Hue, Saturation, Lightness) function.
+	 * Lightness is an additive color, so 100% lightness is white and 0% lightness is black.
+	 * IMO users interpret grey as a subtractive color, so the color values are inverted (grey 0 = nearly white) (grey 100 = basically black). 
+	 */
 	grey: (
 		0: hsl(0, 0, 97%),
 		5: hsl(0, 0, 95%),
@@ -48,7 +55,7 @@ $colors: (
 		80: hsl(0, 0, 20%),
 		85: hsl(0, 0, 15%),
 		90: hsl(0, 0, 10%),
-		95: hsl(0, 0, 5%),
+		95: hsl(0, 0, 3%), // 5% and 3% are nearly indistinguishable, so treat them the same and leave the value to maintain consistency
 		100: hsl(0, 0, 3%),
 	),
 	grey_fill: (
