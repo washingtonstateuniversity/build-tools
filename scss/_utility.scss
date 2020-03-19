@@ -21,13 +21,18 @@
 	&-spacer {
 		display: flex;
 		align-items: center;
+		flex-flow: column wrap;
 		justify-content: space-between;
 
 		height: 200px;
 		margin: $unit 0;
-		padding: 0 $unit-3xl;
+		padding: $unit $unit-3xl;
 
 		background: linear-gradient(-195deg, color(white, base), color(grey, 10));
+
+		@include mq('small') {
+			flex-flow: row nowrap;
+		}
 	}
 
 	&-title {
