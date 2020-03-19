@@ -9,13 +9,13 @@ html {
 	font-size: $wsu-bt-base-font-size;
 	line-height: 1.6;
 
-	color: color(grey, 80);
+	color: color(grey, 65); // Meets AAA contrast ratio
 }
 
 /* Link Styles
 ======================= */
 a {
-    // text-decoration: underline;
+	// text-decoration: underline;
 
 	// &:active {
 	// 	color: $wsu-bt-link-color--active;
@@ -39,6 +39,8 @@ h4,
 h5,
 h6 {
 	transition: font-size timing(cougar, standard);
+
+	color: color(grey, 75);
 }
 
 /* Paragraph Styles
@@ -52,4 +54,28 @@ p {
 ======================= */
 img {
 	width: 100%;
+}
+
+pre {
+	display: block;
+
+	margin: 3px 0;
+	padding: $unit-xs;
+
+	color: #D4D4A5;
+	border-radius: $wsu-bt-base-border-radius-size;
+	background-color: color(grey, 80);
+
+	@include elevate(0);
+
+	&:hover {
+		@include elevate(3);
+	}
+}
+
+code {
+	margin: 0 $unit-2xs;
+	padding: 1px $unit-2xs;
+
+	background-color: color(grey, 15);
 }
