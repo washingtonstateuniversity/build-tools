@@ -28,7 +28,7 @@
 		margin: $unit 0;
 		padding: $unit $unit-3xl;
 
-		background: linear-gradient(-195deg, color(white, base), color(grey, 10));
+		background: linear-gradient(-195deg, color(white, base), color(gray, 10));
 
 		@include mq('small') {
 			flex-flow: row nowrap;
@@ -51,7 +51,7 @@
 		padding: $unit-xs $unit;
 
 		color: color(white, base);
-		background: linear-gradient(-195deg, color(grey, 50), color(grey, 70));
+		background: linear-gradient(-195deg, color(gray, 50), color(gray, 70));
 
 		@include font-size(14px, 300);
 		@include elevate(2);
@@ -66,7 +66,7 @@
 			color: color(white, base);
 
 			&:hover {
-				color: color(grey, 20);
+				color: color(gray, 20);
 			}
 		}
 	}

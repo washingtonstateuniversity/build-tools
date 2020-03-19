@@ -30,12 +30,12 @@ $colors: (
 		light: #CA1237,
 	),
 	/* 
-	 * Greys
+	 * Grays
 	 * Values are defined as a HSL (Hue, Saturation, Lightness) function.
 	 * Lightness is an additive color, so 100% lightness is white and 0% lightness is black.
-	 * IMO users interpret grey as a subtractive color, so the color values are inverted (grey 0 = nearly white) (grey 100 = basically black). 
+	 * IMO users interpret gray as a subtractive color, so the color values are inverted (gray 0 = nearly white) (gray 100 = basically black). 
 	 */
-	grey: (
+	gray: (
 		0: hsl(0, 0, 97%), // #f7f7f7
 		5: hsl(0, 0, 95%), // #f2f2f2
 		10: hsl(0, 0, 90%), // #e6e6e6
