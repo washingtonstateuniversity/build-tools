@@ -20,7 +20,6 @@
         "modularscale-sass": "^3.0.10"
     },
     "dependencies": {
-        "mitt": "^1.2.0",
-        "modularscale-sass": "^3.0.10"
+        "mitt": "^1.2.0"
     }
 }
