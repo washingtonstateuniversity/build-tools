@@ -1,5 +1,5 @@
 # WSU Build Tools
-Build tools is a library of helpful resources, designed to make getting up and running on project easier. 
+Build tools is a library of helpful resources, designed to make getting up and running on a project easier. 
 
 ## Getting Started
 1. Install package `npm install --save-dev https://github.com/washingtonstateuniversity/wsu-build-tools.git`
