@@ -1,4 +1,4 @@
-import wsu_wds from '../../../wsu-build-tools/js/wsu-bt-wds';
+import wsu_wds from '../wsu-bt-wds';
 import wsu_bt_keyboard_nav_accessibility from '../keyboard-nav-accessibility/wsu-bt-keyboard-nav-accessibility';
 
 export default class wsu_bt_vertical_nav {
