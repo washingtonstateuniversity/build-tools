@@ -10,6 +10,7 @@ export default class wsu_bt_vertical_nav {
 		this.nav_list_container_selector = '';
 		this.tree_mode = params.tree_mode ? true : false; // TODO needs to do something
 		this.show_logs = params.show_logs ? true : false;
+		this.start_collapsed_width = params.start_collapsed_width;
 
 		/**
 		 *
@@ -99,8 +100,19 @@ export default class wsu_bt_vertical_nav {
 		 * Set default state as open
 		 *
 		 */
-		if (this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--open')) {
-			this.open_panel();
+		if ( this.nav_panel.classList.contains('wsu-s-nav-vertical__wrapper--start-open' ) ) {
+
+			this.nav_panel.classList.remove('wsu-s-nav-vertical__wrapper--start-open');
+
+			if ( this.start_collapsed_width < window.innerWidth ) {
+			
+				this.open_panel();
+
+			} else {
+
+				this.close_panel();
+
+			}
 		}
 	}
 
