@@ -10,6 +10,9 @@ $breakpoints: (
 	"medium-large":  $wsu-bt-breakpoint--medium-large,
 	"large":   $wsu-bt-breakpoint--large,
 	"xlarge":  $wsu-bt-breakpoint--xlarge,
+	"mobile": $wsu-bt-breakpoint--small,
+	"tablet": $wsu-bt-breakpoint--large,
+	"ultrawide": $wsu-bt-breakpoint--xlarge,
 );
 
 @mixin mq($width, $type: min) {
