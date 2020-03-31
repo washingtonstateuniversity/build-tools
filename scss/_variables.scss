@@ -18,7 +18,7 @@ $modularscale: (
 $wsu-bt-breakpoint--xsmall: 576px;
 $wsu-bt-breakpoint--small: 768px;
 $wsu-bt-breakpoint--medium: 992px;
-$wsu-bt-breakpoint--medium-large: 1160px;
+$wsu-bt-breakpoint--medium-large: 1260px;
 $wsu-bt-breakpoint--large: 1360px;
 $wsu-bt-breakpoint--xlarge: 1920px;
 
@@ -88,6 +88,12 @@ $wsu-bt-font-bold: 700;
 $wsu-bt-font-semi-bold: 600;
 $wsu-bt-font-medium: 500;
 
+/* Nav Sizing
+======================= */
+$wsu-bt-nav-vertical-width-full: 260px;
+$wsu-bt-nav-vertical-width-collapse: 61px;
+$wsu-bt-nav-vertical-width-offset: 198px;
+
 /* Sizing Units
 ======================= */
 $unit-2xs: $wsu-bt-base-unit * 0.25; // 5px
@@ -110,9 +116,8 @@ $wsu-bt-spacing-medium: 1.5rem;
 $wsu-bt-spacing-medium-large: 2rem;
 $wsu-bt-spacing-large: 3rem;
 $wsu-bt-spacing-xlarge: 4rem;
-$wsu-bt-spacing-extend: calc( ( ( ( 100vw - 100% ) / 2 ) ) * -1 );
-$wsu-bt-spacing-extend-inner-column: calc( ( ( ( 100vw - 100% ) / 2 ) ) - #{$wsu-bt-spacing-medium} );
-$wsu-bt-spacing-extend-inner: calc( ( ( ( 100vw - 100% ) / 2 ) ) );
+
+$wsu-bt-spacing-content: 1.5rem;
 
 /* Elevation Variables
 ======================= */
@@ -146,9 +151,3 @@ $ambient-shadow-map: (
   5: 0 9px 15px 0 $ambient-shadow-colour,
   6: 0 11px 15px 0 $ambient-shadow-colour
 );
-
-/* Nav Sizing
-======================= */
-$wsu-bt-nav-vertical-width-full: 260px;
-$wsu-bt-nav-vertical-width-collapse: 61px;
-$wsu-bt-nav-vertical-width-offset: 198px;

@@ -1,0 +1,12 @@
+@function space_content( $nav_width: 0, $modifier: -1, $reduce_by: 0 ) {
+
+	@if $nav_width == 0 and $reduce_by == 0 {
+		@return calc( ( ( 100vw - 100% ) / 2 ) * #{$modifier} );
+	} @else if $nav_width == 0 {
+		@return calc( ( ( ( 100vw - 100% ) / 2 ) - #{$reduce_by} ) * #{$modifier} );
+	} @else if $reduce_by == 0 {
+		@return calc( ( ( 100vw - 100% - #{$nav_width} ) / 2 ) * #{$modifier} );
+	} @else {
+		@return calc( ( ( ( 100vw - 100% - #{$nav_width} ) / 2 ) - #{$reduce_by} ) * #{$modifier} );
+	}
+}
