@@ -117,6 +117,22 @@ $wsu-bt-spacing-medium-large: 2rem;
 $wsu-bt-spacing-large: 3rem;
 $wsu-bt-spacing-xlarge: 4rem;
 
+$wsu-bt-spacing-map: (
+	none: 0,
+	tight: 0.5rem,
+	xsmall: 0.7rem,
+	small: 1rem,
+	medium-small: 1.25rem,
+	medium: 1.5rem,
+	medium-large: 2rem,
+	large: 2.5rem,
+	xlarge: 3rem,
+	component: 1.5rem,
+	content: 2.25rem,
+	content-top: 2.5rem,
+	content-bottom: 3rem,
+);
+
 $wsu-bt-spacing-content: 1.5rem;
 
 /* Elevation Variables

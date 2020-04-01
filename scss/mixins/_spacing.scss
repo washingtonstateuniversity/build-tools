@@ -10,3 +10,14 @@
 		@return calc( ( ( ( 100vw - 100% - #{$nav_width} ) / 2 ) - #{$reduce_by} ) * #{$modifier} );
 	}
 }
+
+@function space( $space ) {
+
+	@if map-has-key($wsu-bt-spacing-map, $space) {
+		@return map-get($wsu-bt-spacing-map, $space);
+	  } @else {
+		@warn "Unfortunately, no value could be retrieved from `#{$space}`. "
+			+ "Please make sure it is defined in `$wsu-bt-spacing-map` map.";
+	  }
+	
+}
