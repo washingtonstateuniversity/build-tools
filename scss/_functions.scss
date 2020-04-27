@@ -23,6 +23,6 @@
 	}
 
 	@else {
-		@error "Value #{$value} must be a px, rem, or ms() value.";
+		@error "Value #{$value} must be a px or rem value.";
 	}
 }
