@@ -70,8 +70,10 @@ $colors: (
 /* Typography
 ======================= */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,800,800i&display=swap');
+@import url("https://use.typekit.net/odg1lho.css"); // This is Bookmania from fonts.adobe.com
 
 $wsu-bt-primary-font-family: 'Montserrat', sans-serif;
+$wsu-bt-secondary-font-family: 'Bookmania', serif;
 $wsu-bt-link-color--base: #A60F2D;
 $wsu-bt-link-color--active: #CA1237;
 $wsu-bt-link-color--hover: #CA1237;

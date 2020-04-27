@@ -1,0 +1,11 @@
+/* Font 
+ * Example usage: @include font('primary');
+ * @params $font-family
+======================= */
+@mixin font($family: 'primary') {
+	@if ( $family == 'secondary' ) {
+		font-family: $wsu-bt-secondary-font-family;
+	} @else {
+		font-family: $wsu-bt-primary-font-family;
+	}
+}
