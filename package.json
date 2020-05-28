@@ -1,5 +1,5 @@
 {
-    "name": "@wsu/build-tools",
+    "name": "@washingtonstateuniversity/build-tools",
     "version": "1.2.0",
     "description": "A package to handle all things build tool related.",
     "main": "index.js",
@@ -8,7 +8,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/washingtonstateuniversity/wsu-build-tools.git"
+        "url": "git://github.com/washingtonstateuniversity/wsu-build-tools.git"
     },
     "author": "Nic Ford",
     "license": "MIT",
@@ -19,5 +19,8 @@
     "dependencies": {
         "mitt": "^1.2.0",
         "modularscale-sass": "^3.0.10"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
     }
 }
