@@ -10,7 +10,8 @@ $z-indexes: (
 	header: 6000,
 	content: 5000,
 	contentbackground: 4900,
-	footer: 4000
+	footer: 4000,
+	decorative: -1,
 );
 
 @function z($name) {
