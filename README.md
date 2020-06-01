@@ -1,10 +1,10 @@
 # WSU Build Tools
 Build tools is a library of helpful resources, designed to make getting up and running on a project easier. 
 
-## Getting Started
-1. Install package `npm install --save-dev https://github.com/washingtonstateuniversity/wsu-build-tools.git`
-2. Import SCSS `@import '~@wsu/build-tools/scss/all-the-things';`
+## Getting Started Using Build Tools
+1. [Install package](https://github.com/wsuwebteam/wsu-build-tools/packages/245868)
+2. Import SCSS `@import '~@wsu/build-tools/scss/all-the-things';`, JS, Packages, etc.
 3. Build away!
 
-## Updating Build Tools Locally
-1. If you want to pull the most recent version of Build Tools run `npm update @wsu/build-tools`
+## Publishing a Package
+Build Tools uses the GitHub Package Registry. So to distribute updates, it must be published. Follow [the configuration guide](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages) to setup your machine to publish to Github Packages.
