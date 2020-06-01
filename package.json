@@ -1,5 +1,5 @@
 {
-    "name": "@washingtonstateuniversity/wsu-build-tools",
+    "name": "@wsuwebteam/build-tools",
     "version": "1.2.3",
     "description": "A package to handle all things build tool related.",
     "main": "index.js",
@@ -13,9 +13,9 @@
     "author": "Nic Ford",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/washingtonstateuniversity/wsu-build-tools/issues"
+        "url": "https://github.com/wsuwebteam/build-tools/issues"
     },
-    "homepage": "https://github.com/washingtonstateuniversity/wsu-build-tools#readme",
+    "homepage": "https://github.com/wsuwebteam/build-tools#readme",
     "dependencies": {
         "mitt": "^1.2.0"
     }
