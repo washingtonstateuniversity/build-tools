@@ -11,7 +11,7 @@ $z-indexes: (
 	content: 5000,
 	contentbackground: 4900,
 	footer: 4000,
-	decorative: -1,
+	decorative: 1000,
 );
 
 @function z($name) {
