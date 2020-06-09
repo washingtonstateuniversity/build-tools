@@ -23,9 +23,9 @@
 @mixin shadow($state: 'default') {
 	@if ($state == 'hover' ) {
 		box-shadow:
-			0 1px 2.5px rgba(0, 0, 0, 0.101),
-			0 3.4px 8.5px rgba(0, 0, 0, 0.149),
-			0 15px 38px rgba(0, 0, 0, 0.25)
+			0 5.3px 7.1px rgba(0, 0, 0, 0.067),
+			0 10.4px 14.3px rgba(0, 0, 0, 0.091),
+			0px 10px 20px 0px rgba(0, 0, 0, 0.15)
 		;
 	} @else {
 		box-shadow:
