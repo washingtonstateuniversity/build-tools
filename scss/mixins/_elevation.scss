@@ -12,3 +12,26 @@
   map-get($key-shadow-penumbra-map, $elevation),
   map-get($ambient-shadow-map, $elevation);
 }
+
+/**
+* Function for adding a drop shadow behind an element.
+*
+* Example:
+* @include shadow();
+*/
+
+@mixin shadow($state: 'default') {
+	@if ($state == 'hover' ) {
+		box-shadow:
+			0 5.3px 7.1px rgba(0, 0, 0, 0.067),
+			0 10.4px 14.3px rgba(0, 0, 0, 0.091),
+			0px 10px 20px 0px rgba(0, 0, 0, 0.15)
+		;
+	} @else {
+		box-shadow:
+			0 0.3px 1.3px rgba(0, 0, 0, 0.04),
+			0 1.1px 4.2px rgba(0, 0, 0, 0.06),
+			0 5px 19px rgba(0, 0, 0, 0.1)
+		;
+	}
+}
