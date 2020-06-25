@@ -1,17 +1,23 @@
-const getVerticalSpacingClasses = ( props ) => {
+const getUtilityClasses = ( propertyKeys, props ) => {
 
-	let componentClasses = [];
+	let utilityClasses = [];
 
-	console.log( props.verticalSpacing );
+	for ( const [key, classSlug ] of Object.entries( propertyKeys ) ) {
 
-	if ( 'undefined' != props.verticalSpacing && 'default' != props.verticalSpacing && props.verticalSpacing ) {
-		componentClasses.push( 'wsu-u-space-vertical--' + props.verticalSpacing );
+		if ( props.hasOwnProperty( key ) ) {
+
+			if ( props[ key ] && 'default' != props[ key ] ) {
+
+				utilityClasses.push( 'wsu-u-' + classSlug + '--' + props[ key ] );
+
+			}
+
+		}
+
 	}
 
-	console.log( componentClasses );
-
-	return componentClasses;
+	return utilityClasses;
 
 }
 
-export { getVerticalSpacingClasses }
+export { getUtilityClasses }
