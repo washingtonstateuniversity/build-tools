@@ -3,3 +3,5 @@ const wsuRange = {
 	partial: ['default','xsmall','small','medium','large','xlarge'],
 	limited: ['default','small','medium','large'],
 }
+
+export { wsuRange }
