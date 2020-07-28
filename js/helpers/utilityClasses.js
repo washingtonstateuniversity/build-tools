@@ -1,23 +1,55 @@
-const getUtilityClasses = ( propertyKeys, props ) => {
+/**
+ * 
+ * @param {*} propertyKeys [{key:'', classSlug:'', isBool:false, value:'', prefix:'wsu-u-',default:''}]
+ * 		
+ * @param {*} props 
+ */
 
-	let utilityClasses = [];
+const getUtilityClasses = ( utilityClasses, props, addClasses = [], asString = true ) => {
 
-	for ( const [key, classSlug ] of Object.entries( propertyKeys ) ) {
+	let classes = [];
 
-		if ( props.hasOwnProperty( key ) ) {
+	for ( const utilityClass of utilityClasses ) {
 
-			if ( props[ key ] && 'default' != props[ key ] ) {
+		if ( utilityClass.hasOwnProperty( 'key' ) ) {
 
-				utilityClasses.push( 'wsu-u-' + classSlug + '--' + props[ key ] );
+			let key = utilityClass.key;
+
+			// Set base class prefix, accepts an empty string for no value. 
+			let prefix = ( utilityClass.hasOwnProperty( 'prefix' )  ) ? utilityClass.prefix : 'wsu-u-';
+
+			// Set the class slug. Not set will result in an empty string
+			prefix += ( utilityClass.hasOwnProperty( 'classSlug' )  ) ? utilityClass.classSlug + '--' : '';
+
+			if ( props.hasOwnProperty( key ) ) {
+
+				// Handle boolean properties - uses value prop if true.
+				if ( utilityClass.hasOwnProperty( 'isBool' ) && utilityClass.isBool && utilityClass.hasOwnProperty( 'value' ) && props[ key ] ) {
+
+					classes.push( prefix + utilityClass.value );
+
+				} else if ( props[ key ] && 'default' != props[ key ] ) { // Handle text props
+					
+					classes.push( prefix + props[ key ] );
+
+				}
 
 			}
-
 		}
 
 	}
 
-	return utilityClasses;
+	classes = classes.concat( addClasses );
+
+	if ( asString ) {
+
+		classes = classes.join( ' ' );
+
+	}
+
+	return classes;
 
 }
+
 
 export { getUtilityClasses }
