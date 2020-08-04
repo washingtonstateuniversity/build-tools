@@ -41,6 +41,8 @@ const getUtilityClasses = ( utilityClasses, props, addClasses = [], asString = t
 
 	classes = classes.concat( addClasses );
 
+	classes.reverse();
+
 	if ( asString ) {
 
 		classes = classes.join( ' ' );
