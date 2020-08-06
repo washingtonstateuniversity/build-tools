@@ -8,26 +8,7 @@ html {
 	font-family: $wsu-bt-primary-font-family;
 	font-size: $wsu-bt-base-font-size;
 	line-height: 1.6;
-
-	color: color(gray, 65); // Meets AAA contrast ratio
-}
-
-/* Link Styles
-======================= */
-a {
-	// text-decoration: underline;
-
-	// &:active {
-	// 	color: $wsu-bt-link-color--active;
-	// }
-
-	// &:hover {
-	// 	color: $wsu-bt-link-color--hover;
-	// }
-
-	// &:visited {
-	// 	color: $wsu-bt-link-color--base;
-	// }
+	color: color(gray, 85);
 }
 
 /* Paragraph Styles
@@ -61,8 +42,8 @@ pre {
 }
 
 code {
-	margin: 0 $unit-2xs;
-	padding: 1px $unit-2xs;
+	// margin: 0 $unit-2xs;
+	// padding: 1px $unit-2xs;
 
-	background-color: color(gray, 15);
+	// background-color: color(gray, 15);
 }
