@@ -221,9 +221,7 @@ export default class wsu_bt_vertical_nav {
 		}
 	}
 
-	toggle_panel(e) {
-		e.preventDefault();
-
+	toggle_panel() {
 		if (this.nav_panel_control.getAttribute('aria-expanded') == 'true') {
 			this.close_panel();
 		} else {
