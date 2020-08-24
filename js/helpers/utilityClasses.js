@@ -32,6 +32,10 @@ const getUtilityClasses = ( utilityClasses, props, addClasses = [], asString = t
 					
 					classes.push( prefix + props[ key ] );
 
+				} else if ( utilityClass.hasOwnProperty( 'defaultClass' ) && utilityClass.defaultClass  ) {
+
+					classes.push( utilityClass.defaultClass );
+
 				}
 
 			}
