@@ -1,0 +1,32 @@
+@import './color';
+@import './media-queries';
+
+@mixin  heading( $level: 'h1', $include-spacing: true, $font-weight: 800 ) {
+
+	margin-top: 0;
+	color: color(gray, 85);
+
+	@if ( 'h1' == $level ) {
+		font-size: 3rem;
+		line-height: 1.25;
+
+		@if ( $include-spacing == true ) {
+			padding-bottom: 0.3em;
+			margin-bottom: 0.75em;
+		}
+
+		font-weight: $font-weight;
+
+		position: relative;
+		
+
+		@include mq('tablet','max') {
+			font-size: 2.5rem;
+		}
+		@include mq('mobile','max') {
+			font-size: 2rem;
+		}
+	
+	}
+	
+}
