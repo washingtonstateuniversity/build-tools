@@ -1,4 +1,4 @@
-const getInlineStyle = ( props, propertyArray, doLegacyCheck = false ) => {
+const getInlineStyle = ( props, propertyArray ) => {
 
 	let inlineStyle = {};
 
@@ -34,5 +34,32 @@ const getInlineStyle = ( props, propertyArray, doLegacyCheck = false ) => {
 	return inlineStyle;
 }
 
+const setInlineStyleDefaults = ( inlineStyleMap, defaultStyleMap ) => {
 
-export { getInlineStyle };
+	for ( var key in defaultStyleMap) {
+
+		if ( defaultStyleMap.hasOwnProperty( key ) ) {
+			
+			if ( inlineStyleMap.hasOwnProperty( key ) ) {
+
+				if ( '' == inlineStyleMap[ key ] || 'default' == inlineStyleMap[ key ] ) {
+
+					inlineStyleMap[ key ] = defaultStyleMap[ key ];
+
+				}
+
+			} else {
+
+				inlineStyleMap[ key ] = defaultStyleMap[ key ];
+
+			}
+
+		}
+
+	}
+
+	return inlineStyleMap;
+}
+
+
+export { getInlineStyle, setInlineStyleDefaults };
