@@ -10,7 +10,7 @@ const getInlineStyle = ( props, propertyArray ) => {
 
 		if ( key && props.hasOwnProperty( key ) ) {
 
-			let property = ( styleObj.hasOwnProperty( 'property' ) ) ? styleObj.property : '';
+			let property = ( styleObj.hasOwnProperty( 'property' ) ) ? styleObj.property : styleObj.key;
 			let isBool = ( styleObj.hasOwnProperty( 'isBool' ) ) ? styleObj.isBool : false;
 			let value = ( styleObj.hasOwnProperty( 'value' ) ) ? styleObj.value : props[ key ];
 			let legacyMap = ( styleObj.hasOwnProperty( 'legacyMap' ) ) ? styleObj.legacyMap : false;
@@ -22,8 +22,12 @@ const getInlineStyle = ( props, propertyArray ) => {
 					value = ( legacyMap.hasOwnProperty( value ) ) ? legacyMap[value] : value;
 
 				}
-				
-				inlineStyle[ property ] = value;
+
+				if ( ! emptyProp.includes( value ) ) {
+
+					inlineStyle[ property ] = value;
+
+				}
 	
 			}
 		}
