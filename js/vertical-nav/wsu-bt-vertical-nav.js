@@ -58,10 +58,6 @@ export default class wsu_bt_vertical_nav {
 		 *
 		 */
 		const nav_item_selector_elements = document.querySelectorAll(this.nav_list_container_selector);
-		var keyboard_nav = new wsu_bt_keyboard_nav_accessibility({
-			elements: nav_item_selector_elements
-		});
-		keyboard_nav.init();
 
 		/**
 		 *
