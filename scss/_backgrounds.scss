@@ -1,4 +1,7 @@
 .wsu-u-background {
+	&--white {
+		background-color: color(white, base);
+	}
 	&--gray-0 {
 		background-color: color( gray, 5 );
 	}
