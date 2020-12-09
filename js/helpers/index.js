@@ -11,3 +11,5 @@ export { verticalSpacingSet as verticalSpacingSet } from './storybook';
 export { verticalSpacingSetPartial as verticalSpacingSetPartial } from './storybook';
 
 export { getUtilityClasses as getUtilityClasses } from './utilityClasses';
+
+export { default as Repeater } from './repeater';
